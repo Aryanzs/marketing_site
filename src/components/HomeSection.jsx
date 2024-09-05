@@ -5,27 +5,37 @@ import "../components/HomeSection.css"
 
 const HomeSection = () => {
     return (
-        <div className="bg-white py-12">
-            <div className="container mx-auto flex flex-col md:flex-row items-center justify-center">
+        <div className="bg-white py-20 sm:py-28 md:py-40">
+            <div className="container mx-auto flex flex-col md:flex-row items-center justify-center px-4 sm:px-6">
                 {/* Left Kidney Image with floating animation */}
-                <div className="md:w-1/3 flex justify-center animate-floating">
-                    <img src={kidneyImage1} alt="Kidney" className="w-1/2 md:w-full h-auto" />
+                <div className="w-2/3 sm:w-1/2 md:w-1/3 flex justify-center animate-floating mt-8">
+                    <img 
+                        src={kidneyImage1} 
+                        alt="Kidney" 
+                        className="w-2/3 sm:w-1/2 md:w-2/3 h-auto" 
+                    />
                 </div>
 
                 {/* Center Text */}
-                <div className="md:w-1/3 text-center my-8 md:my-0">
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Your Trusted Partner in <span className="text-teal-500">Kidney Care</span>
+                <div className="w-full md:w-1/3 text-center my-8 md:my-0 px-4">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-3">
+                        <span className='block mb-3'>Your Trusted</span>  
+                        <span className='block mb-3'>Partner in</span>  
+                        <span className="text-teal-500">Kidney Care</span>
                     </h1>
-                    <p className="text-base md:text-lg text-gray-600">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-600">
                         A Compassionate Approach To Managing <br />
-                        <span className="font-semibold text-teal-600">Chronic Kidney Disease</span>
+                        <span className="font-semibold text-teal-800">Chronic Kidney Disease</span>
                     </p>
                 </div>
 
                 {/* Right Kidney Image with floating animation */}
-                <div className="md:w-1/3 flex justify-center animate-floating">
-                    <img src={kidneyImage2} alt="Kidney" className="w-1/2 md:w-full h-auto" />
+                <div className="w-2/3 sm:w-1/2 md:w-1/3 flex justify-center animate-floating mt-8">
+                    <img 
+                        src={kidneyImage2} 
+                        alt="Kidney" 
+                        className="w-2/3 sm:w-1/2 md:w-2/3 h-auto" 
+                    />
                 </div>
             </div>
         </div>
