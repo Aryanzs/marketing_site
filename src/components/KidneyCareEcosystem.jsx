@@ -1,26 +1,39 @@
-import React from 'react';
-import mobileImage from '../assets/images/mobileimg.png'; // Path to the image of the mobile phone
+import React from "react";
+import mobileImage from '../assets/images/mobileimg.png';
 
 const KidneyCareEcosystem = () => {
   return (
-    <div className="bg-white py-12">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        {/* Left Section - Text */}
-        <div className="text-center md:text-left">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Kidney Care Ecosystem <br />
-            <span className="text-teal-500">On Your Fingertips</span>
-          </h1>
-          <p className="text-lg text-gray-600">
+    <div className="flex flex-col lg:flex-row h-screen bg-gray-50 p-4 md:p-8">
+      {/* Left Section - Heading at the top left */}
+      <div className="lg:w-1/3 w-full lg:text-left text-center lg:pl-16 mb-8 lg:mb-0">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black">Kidney Care Ecosystem</h1>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-teal-400 mt-4">On Your Fingertips</h2>
+
+      </div>
+
+      {/* Center Section - Image Mockup */}
+      <div className="lg:w-1/3 w-full flex justify-center mb-8 lg:mb-0">
+        <div className="relative">
+          {/* Mobile Mockup */}
+          <div className="border-4 border-gray-300 rounded-3xl w-48 sm:w-56 md:w-64 h-[400px] sm:h-[440px] md:h-[480px] overflow-hidden shadow-xl">
+            <img
+              src={mobileImage} // Dummy image for mockup
+              alt="Mobile Mockup"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Right Section - Text at the bottom right */}
+      <div className="lg:w-1/4 lg:ml-10 w-full lg:text-right text-center  mt-8 lg:mt-[300px]">
+        <div className="text-teal-800">
+          <p className="text-base sm:text-lg">
             A CKD (Stage 1 to Stage 4, dialysis & transplant) patient needs multiple services in their treatment journey.
-            <br />
+          </p>
+          <p className="  sm:text-lg ">
             We partner with all kidney care stakeholders to create an ecosystem where the patient gets everything under one roof.
           </p>
-        </div>
-
-        {/* Right Section - Mobile Image */}
-        <div className="flex justify-center">
-          <img src={mobileImage} alt="Kidney Care Ecosystem" className="w-10 h-auto md:w-[200px]" />
         </div>
       </div>
     </div>
