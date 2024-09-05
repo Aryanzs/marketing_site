@@ -23,6 +23,7 @@
     background: white;
     white-space: nowrap;
     position: relative;
+    margin-top: 20px;
   }
   
   .logos:before,
