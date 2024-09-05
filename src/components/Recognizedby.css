@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: #f2f2f2;
+  }
+  
+  @keyframes slide {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .logos {
+    overflow: hidden;
+    padding: 60px 0;
+    background: white;
+    white-space: nowrap;
+    position: relative;
+  }
+  
+  .logos:before,
+  .logos:after {
+    position: absolute;
+    top: 0;
+    width: 150px; /* Adjust to make gradient wider or narrower */
+    height: 100%;
+    content: "";
+    z-index: 2;
+  }
+  
+  .logos:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+  }
+  
+  .logos:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+  }
+  
+  .logos-slide {
+    display: inline-block;
+    animation: slide 20s linear infinite;
+    white-space: nowrap; /* Keep the logos in one line */
+    will-change: transform;
+    transition: transform 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Slow down on hover without resetting animation */
+  .logos:hover .logos-slide {
+    animation-play-state: paused; /* Pause animation */
+    transition: transform 0.3s ease;
+    transform: translateX(calc(-50%)); /* Apply slower effect dynamically */
+  }
+  
+  .logos-slide img {
+    height: 50px;
+    margin: 0 40px;
+    display: inline-block;
+  }
+  
+  @media (max-width: 768px) {
+    .logos-slide img {
+      height: 30px;
+      margin: 0 20px;
+    }
+  }
+  
