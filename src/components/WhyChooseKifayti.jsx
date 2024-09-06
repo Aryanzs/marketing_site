@@ -1,132 +1,102 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import card1img from "../assets/images/card1.jpg";
-import card2img from "../assets/images/card2.jpg";
-import card3img from "../assets/images/card3.jpg";
-
-const FeatureCard = ({ title, description, image, isMain }) => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    } else {
-      controls.start('hidden');
-    }
-  }, [controls, inView]);
-
-  const cardVariants = {
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-    hidden: { opacity: 0, y: 50, transition: { duration: 0.5 } }
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={cardVariants}
-      className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden ${
-        isMain ? 'md:col-span-2' : ''
-      }`}
-    >
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-3 text-gray-800">{title}</h3>
-        <p className="text-gray-600 mb-4 text-sm leading-relaxed">{description}</p>
-      </div>
-      <img src={image} alt={title} className="w-full h-48 object-cover" />
-    </motion.div>
-  );
-};
+import React from "react";
+import card1img from "../assets/images/card1.jpg"; // Placeholder for card1 image
+import card2img from "../assets/images/card2.jpg"; // Placeholder for card2 image
+import card3img from "../assets/images/card3.jpg"; // Placeholder for card3 image
 
 const WhyChooseKifayti = () => {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    } else {
-      controls.start('hidden');
-    }
-  }, [controls, inView]);
-
-  const containerVariants = {
-    visible: { 
-      transition: { 
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      } 
-    },
-    hidden: {}
-  };
-
-  const itemVariants = {
-    visible: { opacity: 1, y: 0 },
-    hidden: { opacity: 0, y: 20 }
-  };
-
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-teal-50 py-16 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <motion.div
-          ref={ref}
-          initial="hidden"
-          animate={controls}
-          variants={containerVariants}
-          className="mb-12"
-        >
-          <motion.h2 
-            variants={itemVariants} 
-            className="text-3xl md:text-4xl font-bold text-center mb-6"
-          >
-            Why Choose <span className="text-orange-500">Kifayti?</span>
-          </motion.h2>
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-col md:flex-row items-center justify-between"
-          >
-            <div className="md:w-1/2 text-left mb-6 md:mb-0">
-              <p className="text-lg text-gray-700 leading-relaxed">
-                We provide comprehensive & personalized support, tools & resources 
-                that you need to manage your CKD with confidence and ease.
-              </p>
-            </div>
-            <div className="md:w-1/2 text-left md:text-right">
-              <p className="text-base text-gray-600 leading-relaxed">
-                Our holistic approach ensures that we look after your physical health 
-                and emotional well-being, supporting you every step of the way.
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
+    <div
+      className="bg-cover bg-center min-h-screen w-full flex flex-col relative"
+      style={{
+        backgroundImage: "url('https://via.placeholder.com/1920x1080')",
+      }} // Dummy image URL
+    >
+      {/* Banner Content */}
+      <div className="relative z-[1] flex flex-col md:flex-row px-4 w-full max-w-7xl mx-auto mt-10 md:mt-20">
+        {/* Heading on the left */}
+        <div className="flex-1 flex items-center justify-center md:justify-start mb-8 md:mb-0">
+          <h1 className="text-4xl md:text-7xl font-bold text-black text-center md:text-left">
+            Why Choose <br />
+            <span className="text-red-500">Kifayti</span>?
+          </h1>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <FeatureCard
-            title="Holistic Care For A Better Life"
-            description="Our comprehensive approach addresses both your physical and emotional needs, providing support at every stage of your journey."
-            image={card1img}
-            isMain={true}
-          />
-          <div className="flex flex-col gap-6">
-            <FeatureCard
-              title="Tailored Treatment Plan"
-              description="We create personalized treatment plans tailored to your unique needs, ensuring the most effective care possible."
-              image={card2img}
+        {/* Paragraph on the right */}
+        <div className="flex-1 flex items-center justify-center md:justify-end">
+          <p className="text-sm font-semibold md:text-xl text-teal-800 text-center md:text-right">
+            We provide comprehensive & personalized <br />
+            support, tools & resources that you need to <br />
+            manage your CKD with confidence and ease.
+          </p>
+        </div>
+      </div>
+
+      <div className="py-12 z-[1]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* First Column: First Card Only */}
+          <div className="bg-white p-6 rounded-lg shadow-md flex flex-col text-left">
+            <h2 className="text-3xl md:text-5xl font-bold text-teal-900 mb-4">
+              Holistic Care <br /> For A Better Life
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Our holistic approach ensures that we look after your physical
+              health and emotional well-being. We're here to support you every
+              step of the way.
+            </p>
+            <img
+              src={card1img}
+              alt="Holistic Care"
+              className="w-full h-[200px] md:h-[250px] flex-grow object-cover"
             />
-            <FeatureCard
-              title="Health Monitoring Anytime, Anywhere"
-              description="Our mobile app allows for seamless health tracking and communication with your care team, no matter where you are."
-              image={card3img}
-            />
+          </div>
+
+          {/* Second Column: Second and Third Cards Stacked */}
+          <div className="grid gap-6">
+            {/* Second Card */}
+            <div className="bg-white pl-6 pr-6 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+              {/* Left Side: Text Part */}
+              <div className="md:col-span-2 mt-6 mb-6 text-center md:text-left">
+                <h2 className="text-3xl md:text-5xl font-bold text-teal-900 mb-4">
+                  Tailored Treatment Plan
+                </h2>
+                <p className="text-gray-700">
+                  We create personalized treatment plans tailored to your needs
+                  to provide you with the most effective care possible.
+                </p>
+              </div>
+
+              {/* Right Side: Image Part */}
+              <div className="flex justify-center md:justify-end">
+                <img
+                  src={card2img}
+                  alt="Treatment Plan"
+                  className="w-28 md:w-32 object-cover h-[150px] md:h-[200px]"
+                />
+              </div>
+            </div>
+
+            {/* Third Card */}
+            <div className="bg-white p-6 rounded-lg shadow-md text-center">
+              {/* First Row */}
+              <div className="flex flex-col md:flex-row items-start justify-between mb-4">
+                {/* Left Column: Heading */}
+                <h2 className="text-3xl md:text-5xl font-bold text-teal-900 md:text-left mb-4 md:mb-0 md:mr-6">
+                  Health Monitoring Anytime, Anywhere
+                </h2>
+                {/* Right Column: Image */}
+                <img
+                  src={card3img}
+                  alt="Health Monitoring"
+                  className="w-32 md:w-40 h-auto md:ml-6"
+                />
+              </div>
+              {/* Second Row: Paragraph */}
+              <p className="text-gray-700 md:text-left">
+                Our mobile app streamlines health monitoring, provides easy
+                access to vital information, and facilitates seamless
+                communication with your care team—wherever you are.
+              </p>
+            </div>
           </div>
         </div>
       </div>
