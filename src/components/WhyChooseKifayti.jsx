@@ -12,7 +12,7 @@ const WhyChooseKifayti = () => {
       }} // Dummy image URL
     >
       {/* Banner Content */}
-      <div className="relative z-[1] flex flex-col md:flex-row px-4 w-full max-w-7xl mx-auto mt-10 md:mt-20">
+      <div className="relative z-[1] flex flex-col md:flex-row px-4 w-full max-w-7xl mx-auto mt-1 md:mt-2">
         {/* Heading on the left */}
         <div className="flex-1 flex items-center justify-center md:justify-start mb-8 md:mb-0">
           <h1 className="text-4xl md:text-7xl font-bold text-black text-center md:text-left">
@@ -46,7 +46,7 @@ const WhyChooseKifayti = () => {
             <img
               src={card1img}
               alt="Holistic Care"
-              className="w-full h-[200px] md:h-[250px] flex-grow object-cover"
+              className="w-full h-[200px] md:h-[250px] flex-grow  -mb-6"
             />
           </div>
 
@@ -66,11 +66,11 @@ const WhyChooseKifayti = () => {
               </div>
 
               {/* Right Side: Image Part */}
-              <div className="flex justify-center md:justify-end">
+              <div className="flex justify-center md:justify-end ">
                 <img
                   src={card2img}
                   alt="Treatment Plan"
-                  className="w-28 md:w-32 object-cover h-[150px] md:h-[200px]"
+                  className="w-28 md:w-32 h-[150px] md:h-[200px] lg:-mb-8"
                 />
               </div>
             </div>
