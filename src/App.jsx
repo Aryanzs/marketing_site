@@ -5,6 +5,7 @@ import KidneyCareEcosystem from './components/KidneyCareEcosystem'
 import Navbar from './components/Navbar'
 import RecognizedBy from './components/RecognizedBy'
 import ReviewSlider from './components/ReviewSlider'
+import SupportAndEducation from './components/SupportAndEducation '
 import WhyChooseKifayti from './components/WhyChooseKifayti'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <KidneyCareEcosystem/>
     <RecognizedBy/>
     <WhyChooseKifayti/>
+    <SupportAndEducation/>
     <ReviewSlider/>
     <ContactUs/>
     <Footer/>
