@@ -98,36 +98,7 @@ const WhyChooseKifayti = () => {
               </p>
             </div>
           </div>
-          {/* <div className="bg-white p-6 rounded-lg shadow-md flex flex-col text-left">
-            <h2 className="text-3xl md:text-5xl font-bold text-teal-900 mb-4">
-              Holistic Care <br /> For A Better Life
-            </h2>
-            <p className="text-gray-700 mb-6">
-              Our holistic approach ensures that we look after your physical
-              health and emotional well-being. We're here to support you every
-              step of the way.
-            </p>
-            <img
-              src={card1img}
-              alt="Holistic Care"
-              className="w-full h-[200px] md:h-[400px] flex-grow  -mb-6"
-            />
-          </div> */}
-          {/* <div className="bg-white p-6 rounded-lg shadow-md flex flex-col text-left">
-            <h2 className="text-3xl md:text-5xl font-bold text-teal-900 mb-4">
-              Holistic Care <br /> For A Better Life
-            </h2>
-            <p className="text-gray-700 mb-6">
-              Our holistic approach ensures that we look after your physical
-              health and emotional well-being. We're here to support you every
-              step of the way.
-            </p>
-            <img
-              src={card1img}
-              alt="Holistic Care"
-              className="w-full h-[200px] md:h-[400px] flex-grow  -mb-6"
-            />
-          </div> */}
+ 
         </div>
       </div>
     </div>
