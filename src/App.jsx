@@ -1,29 +1,27 @@
-import ContactUs from './components/ContactUs'
-import Footer from './components/Footer'
-import HomeSection from './components/HomeSection'
-import KidneyCareEcosystem from './components/KidneyCareEcosystem'
-import Navbar from './components/Navbar'
-import RecognizedBy from './components/RecognizedBy'
-import ReviewSlider from './components/ReviewSlider'
-import SupportAndEducation from './components/SupportAndEducation '
-import WhyChooseKifayti from './components/WhyChooseKifayti'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar'; // Import the Navbar
+import Home from './pages/Home'; // Import the Home page
+import Aboutus from './pages/Aboutus'; // Import the About Us page
+import Blogs from './pages/Blogs'; // Import the Blogs page
+import Contact from './pages/Contact'; // Import the Contact page
+import Doctors from './pages/Doctors'; // Import the Doctors page
+import Patients from './pages/Patients'; // Import the Patients page
 
 function App() {
-
   return (
-    <>
-    <Navbar/>
-    <HomeSection/>
-    <KidneyCareEcosystem/>
-    <RecognizedBy/>
-    <WhyChooseKifayti/>
-    <SupportAndEducation/>
-    <ReviewSlider/>
-    <ContactUs/>
-    <Footer/>
- 
-    </>
-  )
+    <Router>
+      <Navbar /> {/* Navbar that stays constant across all pages */}
+      <Routes>
+        <Route path="/" element={<Home />} /> {/* Home Page */}
+        <Route path="/about" element={<Aboutus />} /> {/* About Us Page */}
+        <Route path="/blogs" element={<Blogs />} /> {/* Blogs Page */}
+        <Route path="/contact" element={<Contact />} /> {/* Contact Page */}
+        <Route path="/doctors" element={<Doctors />} /> {/* Doctors Page */}
+        <Route path="/patients" element={<Patients />} /> {/* Patients Page */}
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
