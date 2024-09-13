@@ -1,98 +1,39 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Search } from 'lucide-react';
-import bookImage from '../assets/images/books.png'; // Make sure this path is correct
+
+import bookImage from '../assets/images/books.png'; // Ensure this path is correct
 
 const BlogSearchSection = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { 
-        duration: 0.8, 
-        ease: [0.6, -0.05, 0.01, 0.99],
-        staggerChildren: 0.1
-      } 
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] } 
-    },
-  };
-
-  const floatingAnimation = {
-    y: ['-5px', '5px'],
-    transition: {
-      y: {
-        duration: 2,
-        repeat: Infinity,
-        repeatType: 'reverse',
-        ease: 'easeInOut',
-      },
-    },
-  };
-
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-teal-50 py-20">
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={containerVariants}
-        className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6"
-      >
-        <motion.div variants={itemVariants} className="md:w-1/2 mb-12 md:mb-0">
-          <h1 className="text-5xl font-bold text-gray-800 mb-6">
-            Your Kidney Care <span className="text-teal-500">Resource Library</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Explore our comprehensive collection of kidney care information and resources.
-          </p>
-          <motion.div 
-            className="relative"
-            animate={floatingAnimation}
-          >
-            <input
-              type="text"
-              placeholder="Search topics"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-6 py-4 pr-12 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-teal-300 text-gray-700 transition-all duration-300"
-            />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-orange-500 text-white p-2 rounded-full hover:bg-orange-600 transition-all duration-300">
-              <Search size={24} />
-            </button>
-          </motion.div>
-        </motion.div>
-
-        <motion.div variants={itemVariants} className="md:w-1/2 flex justify-center">
-          <motion.img
-            src={bookImage}
-            alt="Books"
-            className="w-2/3 md:w-1/2 lg:w-2/3 h-auto"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1, ...floatingAnimation }}
-            transition={{ 
-              opacity: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] },
-              scale: { duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] },
-            }}
+    <div className="flex flex-col lg:flex-row justify-between items-center bg-blue-50 p-4 md:p-8 lg:p-32 rounded-lg max-w-full mx-auto pt-16 md:pt-20">
+      {/* Text and Search Section */}
+      <div className="flex flex-col mb-8 lg:mb-0 lg:mr-8 text-center lg:text-left">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
+          Your Kidney Care
+        </h1>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-500 mt-2">
+          Resource Library
+        </h2>
+        {/* Search Bar */}
+        <div className="relative mt-6 w-full lg:w-[500px]">
+          <input
+            type="text"
+            placeholder="Search topics"
+            className="px-4 py-4 w-full sm:max-w-[400px] md:max-w-[450px] rounded-lg border-2 border-gray-200 shadow-xl"
           />
-        </motion.div>
-      </motion.div>
+        </div>
+
+        <button className="bg-red-500 z-50 text-white px-6 py-4 w-full sm:w-32 mt-4  sm:-mt-10 sm:ml-[300px] md:ml-[350px] lg:ml-[390px] hover:bg-red-600 transition-colors">
+          SEARCH
+        </button>
+      </div>
+
+      {/* Image Section */}
+      <div className="flex-shrink-0 mt-8 lg:mt-0">
+        <img
+          src={bookImage}
+          alt="Stack of books"
+          className="w-full max-w-xs lg:h-52 lg:max-w-none mx-auto"
+        />
+      </div>
     </div>
   );
 };
