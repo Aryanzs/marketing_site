@@ -1,13 +1,13 @@
 import React from 'react'
 import FeaturesGrid from '../components/FeatureCard'
-import AnotherContact from '../components/AnotherContact'
+import DoctorContact from '../components/DoctorContact'
 import Footer from '../components/Footer'
 
 const Doctors = () => {
   return (
     <>
     <FeaturesGrid/>
-    <AnotherContact/>
+    <DoctorContact/>
     <Footer/>
     </>
   )

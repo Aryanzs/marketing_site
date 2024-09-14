@@ -5,8 +5,8 @@ import { Clock, TrendingUp, Wallet, Users, Truck, CheckSquare } from 'lucide-rea
 
 const FeatureCard = ({ icon: Icon, title, description }) => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
+    triggerOnce: false,
+    threshold: 0.2,
   });
 
   return (
@@ -14,8 +14,8 @@ const FeatureCard = ({ icon: Icon, title, description }) => {
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-white p-6 rounded-lg shadow-md"
+      transition={{ duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }}
+      className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105"
     >
       <Icon className="text-teal-600 mb-4" size={24} />
       <h3 className="text-lg font-semibold text-teal-700 mb-2">{title}</h3>
@@ -26,7 +26,7 @@ const FeatureCard = ({ icon: Icon, title, description }) => {
 
 const FeaturesGrid = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
 
@@ -73,7 +73,7 @@ const FeaturesGrid = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-4xl font-bold text-center text-gray-800 mb-12"
         >
-          And So Much More.
+          And So Much More
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (

@@ -1,18 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeItem, setActiveItem] = useState('Home');
     const navRef = useRef(null);
+    const location = useLocation(); // Get current location
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
-    };
-
-    const handleMenuItemClick = (item) => {
-        setActiveItem(item);
-        setIsOpen(false); // Close the mobile menu on selection
     };
 
     const menuItems = [
@@ -35,9 +30,8 @@ const Navbar = () => {
                         <Link
                             key={item.name}
                             to={item.path}
-                            onClick={() => handleMenuItemClick(item.name)}
                             className={`text-teal-800 hover:text-red-500 font-semibold transition-colors ${
-                                activeItem === item.name ? 'border-b-4 border-red-500 !text-red-500 font-bold' : ''
+                                location.pathname === item.path ? 'border-b-4 border-red-500 !text-red-500 font-bold' : ''
                             }`}
                         >
                             {item.name}
@@ -59,9 +53,8 @@ const Navbar = () => {
                             <Link
                                 key={item.name}
                                 to={item.path}
-                                onClick={() => handleMenuItemClick(item.name)}
                                 className={`text-teal-800 hover:text-red-500 font-semibold transition-colors ${
-                                    activeItem === item.name ? 'border-b-4 border-red-500  !text-red-500 font-bold' : ''
+                                    location.pathname === item.path ? 'border-b-4 border-red-500  !text-red-500 font-bold' : ''
                                 }`}
                             >
                                 {item.name}
