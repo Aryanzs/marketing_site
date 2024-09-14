@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Aboutus = () => {
+const AboutSection = () => {
   return (
-    <div className="max-w-7xl mx-auto p-20">
+    <div className="max-w-4xl mx-auto p-8">
       {/* Title Section */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-4">Open Roles</h1>
@@ -48,4 +48,4 @@ const Aboutus = () => {
   );
 };
 
-export default Aboutus;
+export default AboutSection;
