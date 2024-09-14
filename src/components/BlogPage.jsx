@@ -1,133 +1,131 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import Blogpost from './Blogpost';
 
-const BlogPage = () => {
-  // Animation controls and Intersection Observer setup for the blog post
-  const controls = useAnimation();
-  const { ref, inView } = useInView({
-    triggerOnce: false, 
-    threshold: 0.4, 
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    } else {
-      controls.start('hidden');
-    }
-  }, [controls, inView]);
-
-  // Define animation variants for cards
-  const cardVariants = (direction) => ({
-    hidden: { 
-      opacity: 0, 
+const cardVariants = (direction) => {
+  return {
+    hidden: {
+      opacity: 0,
       x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
-      y: direction === 'top' ? -100 : direction === 'bottom' ? 100 : 0,
     },
     visible: { 
       opacity: 1, 
-      x: 0,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' } 
+      x: 0, 
+      transition: { duration: 0.8, ease: 'easeInOut' },
     },
-  });
+  };
+};
 
-  const articles = [
-    {
-      id: 1,
-      title: "Blog Post Title 1",
-      category: "Blog Post / Report",
-      date: "20th June 2024",
-      image: "https://via.placeholder.com/400",
-    },
-    {
-      id: 2,
-      title: "Blog Post Title 2",
-      category: "News",
-      date: "15th July 2024",
-      image: "https://via.placeholder.com/400",
-    },
-    {
-      id: 3,
-      title: "Blog Post Title 3",
-      category: "Blog Post / Report",
-      date: "30th August 2024",
-      image: "https://via.placeholder.com/400",
-    },
-    {
-      id: 4,
-      title: "Blog Post Title 4",
-      category: "News",
-      date: "5th September 2024",
-      image: "https://via.placeholder.com/400",
-    },
-    {
-      id: 5,
-      title: "Blog Post Title 5",
-      category: "Blog Post / Report",
-      date: "10th October 2024",
-      image: "https://via.placeholder.com/400",
-    },
-    {
-      id: 6,
-      title: "Blog Post Title 6",
-      category: "News",
-      date: "12th November 2024",
-      image: "https://via.placeholder.com/400",
-    },
-  ];
+const BlogPage = () => {
+  const controlsLeft = useAnimation();
+  const controlsRight = useAnimation();
+  const leftColumnRef = useRef(null);
+  const rightColumnRef = useRef(null);
+
+  // Function to observe elements when they enter the viewport
+  const observeElements = (ref, controls) => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          controls.start('visible'); // Start animation when in view
+        } else {
+          controls.start('hidden'); // Reset when out of view (optional)
+        }
+      },
+      { threshold: 0.1 } // Trigger animation when 10% of the element is visible
+    );
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+  };
+
+  useEffect(() => {
+    observeElements(leftColumnRef, controlsLeft);  // Observe left column
+    observeElements(rightColumnRef, controlsRight); // Observe right column
+  }, [controlsLeft, controlsRight]);
 
   return (
     <section className="bg-gray-50 py-20 px-4 md:px-16">
-      {/* Section Header */}
-      <div className="container mx-auto max-w-7xl">
-        <div className="flex flex-col lg:flex-row justify-between items-start mb-6">
-          <h2 className="text-2xl md:text-4xl font-bold text-black mb-6 lg:mb-0">
-            Latest Blog Posts
-          </h2>
-          <div className="lg:text-right lg:ml-6 w-full lg:w-auto">
-            <p className="text-gray-600 mb-4 text-sm md:text-base">
-              Explore our latest news, articles, and resources to stay informed and engaged.
-            </p>
-          </div>
-        </div>
-      </div>
+      <h1 className="font-bold text-5xl px-10">Blog section</h1>
+      <Blogpost />
 
-      {/* Blog Grid */}
-      <div
-        ref={ref}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 px-2 md:px-8 max-w-full md:max-w-[1310px] mx-auto"
-      >
-        {articles.map((article, index) => (
+      {/* New Section: Two Columns */}
+      <div className="grid grid-cols-1 md:grid-cols-[1fr,2fr] gap-4 mt-10 px-2 md:px-8 max-w-full md:max-w-[1310px] mx-auto">
+        {/* First Column */}
+        <div ref={leftColumnRef} className="flex flex-col gap-4">
           <motion.div
-            key={article.id}
-            className="border-2 border-teal-400 rounded-lg p-4 bg-white shadow-lg"
+            className="border-2 border-teal-400 rounded-lg p-4"
             initial="hidden"
-            animate={controls}
-            variants={cardVariants(index % 2 === 0 ? 'left' : 'right')} 
+            animate={controlsLeft}
+            variants={cardVariants('left')} // Coming from the left
           >
-            <div className="text-xs font-bold text-gray-500 mb-2 flex items-center">
+            <div className="text-xs text-gray-500 mb-2 flex font-bold">
               <img
                 src="https://via.placeholder.com/50"
                 alt="Icon"
                 className="w-8 h-8 mr-2"
               />
-              {article.category}
+              News
             </div>
-            <img
-              className="w-full h-60 object-cover rounded-md mb-4"
-              src={article.image}
-              alt={article.title}
-            />
             <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
-              {article.title}
+              This Is The Title Of <br />The Article That’s Published
             </h3>
-            <p className="text-sm text-gray-500 mt-4">
-              {article.date}
+            <p className="text-sm text-gray-500 mt-4 mb-2">
+              20th June 2024, Name of organization
             </p>
           </motion.div>
-        ))}
+
+          <motion.div
+            className="border-2 border-teal-400 rounded-lg p-4"
+            initial="hidden"
+            animate={controlsLeft}
+            variants={cardVariants('left')} // Coming from the left
+          >
+            <div className="text-xs text-gray-500 mb-2 flex font-bold">
+              <img
+                src="https://via.placeholder.com/50"
+                alt="Icon"
+                className="w-8 h-8 mr-2"
+              />
+              News
+            </div>
+            <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
+              This Is The Title Of <br />The Article That’s Published
+            </h3>
+            <p className="text-sm text-gray-500 mt-4 mb-2">
+              20th June 2024, Name of organization
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Second Column */}
+        <motion.div
+          ref={rightColumnRef}
+          className="border-2 border-teal-400 rounded-lg p-4"
+          initial="hidden"
+          animate={controlsRight}
+          variants={cardVariants('right')} // Coming from the right
+        >
+          <div className="text-xs font-bold text-gray-500 mb-2 flex">
+            <img
+              src="https://via.placeholder.com/50"
+              alt="Icon"
+              className="w-8 h-8 mr-2"
+            />
+            Blog Post / Report
+          </div>
+          <img
+            className="w-full h-60 object-cover rounded-md mb-4"
+            src="https://via.placeholder.com/400"
+            alt="Article"
+          />
+          <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
+            This Is The Title Of <br />The Article That’s Published
+          </h3>
+          <p className="text-sm text-gray-500 mt-4">
+            20th June 2024, Name of organization
+          </p>
+        </motion.div>
       </div>
     </section>
   );

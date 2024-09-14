@@ -28,7 +28,7 @@ const ContactInfo = () => {
 
   return (
     <motion.div 
-      className="bg-gradient-to-br from-blue-50 to-indigo-100 py-16"
+      className="bg-white py-16 -mt-20  "
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
