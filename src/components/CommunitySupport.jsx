@@ -97,44 +97,73 @@
 // export default CommunitySupport;
 
 import React from 'react';
-import communityImage from '../assets/images/community1.png';
+import { motion } from 'framer-motion';
+import communityImage from '../assets/images/community1.png'; // Replace with your image
 
 const CommunitySupport = () => {
+  // Animation variants
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, ease: 'easeOut' },
+    },
+  };
+
   return (
-    <div className="   bg-blue-50 h-full py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-5xl bg-white mx-auto text-center">
+    <div className="bg-blue-50 h-full py-12 px-4 sm:px-6 lg:px-8">
+      <motion.div
+        className="max-w-5xl bg-white mx-auto text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }} // Animation reactivates when scrolled back
+        transition={{ staggerChildren: 0.2 }}
+      >
         {/* Text Section */}
-        <h1 className="text-4xl font-extrabold text-left px-8 py-4 text-teal-900 sm:text-5xl">
+        <motion.h1
+          className="text-4xl font-extrabold text-left px-8 py-4 text-teal-900 sm:text-5xl"
+          variants={textVariants}
+        >
           Community Support
           <br />
           And Access To Counselling
-        </h1>
-        <p className="mt-4 text-lg text-left px-8 text-teal-800">
+        </motion.h1>
+        <motion.p
+          className="mt-4 text-lg text-left px-8 text-teal-800"
+          variants={textVariants}
+        >
           Our team of dedicated nephrologists, dietitians, social workers, and mental health
           specialists come together to provide comprehensive, coordinated care to help you manage
           your CKD.
-        </p>
+        </motion.p>
 
         {/* Image Section */}
-        <div className="mt-10 flex justify-center">
+        <motion.div
+          className="mt-10 flex justify-center"
+          variants={imageVariants}
+        >
           <div className="relative">
-            {/* Background Illustration */}
-            <img
-              src={communityImage}
-              alt="Background Illustration"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            {/* Group Photo */}
             <img
               src={communityImage}
               alt="Group of people"
-              className="relative z-10 max-w-full mx-auto"
+              className="relative z-10 max-w-full mx-auto rounded-lg shadow-lg"
             />
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
 
 export default CommunitySupport;
+

@@ -1,12 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Clock, TrendingUp, Wallet, Users, Truck, CheckSquare } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
-const FeatureCard = ({ icon: Icon, title, description }) => {
+// Card component with enhanced animations
+const FeatureCard = ({ icon: Icon, title, description, index }) => {
+  const controls = useAnimation();
+  const { ref, inView } = useInView({
+    triggerOnce: false, // Animation triggers every time the section is in view
+    threshold: 0.2, // Triggers when 20% of the card is visible for early animation
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
+  }, [controls, inView]);
+
+  const variants = {
+    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { 
+        duration: 0.8, 
+        ease: [0.25, 0.46, 0.45, 0.94], // Smooth easing function
+        delay: index * 0.15 // Increase the delay slightly for each card
+      },
+    },
+  };
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 max-w-xs mx-auto">
+    <motion.div
+      ref={ref}
+      className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 max-w-xs mx-auto"
+      initial="hidden"
+      animate={controls}
+      variants={variants}
+    >
       <Icon className="text-teal-800 mb-4" size={40} />
       <h3 className="text-lg font-semibold text-teal-700 mb-2">{description}</h3>
-    </div>
+    </motion.div>
   );
 };
 
@@ -47,12 +85,17 @@ const FeaturesGrid = () => {
   return (
     <div className="bg-gradient-to-br from-blue-50 to-teal-50 py-16">
       <div className="container lg:w-[1300px] mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+        <motion.h2
+          className="text-4xl font-bold text-center text-gray-800 mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: 'easeOut' }}
+        >
           And So Much More
-        </h2>
+        </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-9 justify-center px-8 lg:px-20">
           {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} />
+            <FeatureCard key={index} {...feature} index={index} />
           ))}
         </div>
       </div>
