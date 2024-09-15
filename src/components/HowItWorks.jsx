@@ -1,100 +1,60 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { User, Activity, Pill, Users, LineChart, Clock } from 'lucide-react';
+import { Clock, TrendingUp, Wallet, Users, Truck, CheckSquare } from 'lucide-react';
 
 const FeatureCard = ({ icon: Icon, title, description }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.2,
-  });
-
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, ease: [0.6, -0.05, 0.01, 0.99] }}
-      className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105"
-    >
-      <Icon className="text-teal-600 mb-4" size={24} />
-      <h3 className="text-lg font-semibold text-teal-700 mb-2">{title}</h3>
-      <p className="text-gray-600">{description}</p>
-    </motion.div>
+    <div className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 max-w-xs mx-auto">
+      <Icon className="text-teal-800 mb-4" size={40} />
+      <h3 className="text-lg font-semibold text-teal-700 mb-2">{description}</h3>
+    </div>
   );
 };
 
 const HowItWorks = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
-
   const features = [
     {
-      icon: User,
-      title: "Patient's account setup",
-      description: "and onboarding",
+      icon: Clock,
+      title: "Reduce retrieval time",
+      description: "Reduce retrieval time by up to 90% by accessing records from a single point",
     },
     {
-      icon: Activity,
-      title: "Continuous monitoring",
-      description: "of health metrics",
+      icon: TrendingUp,
+      title: "Leverage data analysis",
+      description: "Leverage data analysis to enhance your marketing effectiveness",
     },
     {
-      icon: Pill,
-      title: "Medicine management",
-      description: "& tracking",
+      icon: Wallet,
+      title: "Optimize patient management",
+      description: "Optimize patient management & increase your availability enhancing revenue generation",
     },
     {
       icon: Users,
-      title: "Continuous engagement",
-      description: "by executives",
+      title: "Enhance patient experience",
+      description: "Enhance overall patient experience through visuals & continuous engagement",
     },
     {
-      icon: LineChart,
-      title: "Predictive analysis",
-      description: "& data driven decisions",
+      icon: Truck,
+      title: "Enhance last mile engagement",
+      description: "Enhance last mile engagement with patients with delivery of medicines & tests with our partners",
     },
     {
-      icon: Clock,
-      title: "Outcome tracking",
-      description: "& preventive steps",
+      icon: CheckSquare,
+      title: "Boost patient compliance",
+      description: "Boost patient compliance leading to higher engagement and better treatment outcomes",
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-white py-16">
-      <div className="container mx-auto px-4">
-        <motion.h2
-          ref={ref}
-          initial={{ opacity: 0, y: -50 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="text-4xl font-bold text-center text-gray-800 mb-12"
-        >
-          How Does It Work?
-        </motion.h2>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
-        >
+    <div className="bg-gradient-to-br from-blue-50 to-teal-50 py-16">
+      <div className="container lg:w-[1300px] mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
+          And So Much More
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-9 justify-center px-8 lg:px-20">
           {features.map((feature, index) => (
             <FeatureCard key={index} {...feature} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
