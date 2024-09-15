@@ -88,16 +88,15 @@
 // };
 
 // export default ServicesSection;import React from "react";
-
 import card1img from '../assets/images/specialist1.png';
 import card2img from '../assets/images/customer1.png';
 import card3img from '../assets/images/medicine1.png';
 
 const WhyChooseKifayti = () => {
   return (
-    <div className="bg-cover bg-blue-50 bg-center min-h-screen w-full flex flex-col relative">
-      <div className="py-12 z-[1]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="bg-cover bg-blue-50 bg-center min-h-screen w-full flex justify-center items-center">  
+      <div className="py-12 z-[1] w-full max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* First Column: First Card Only */}
           <div className="bg-white p-6 rounded-lg shadow-md flex flex-col text-left max-w-md mx-auto lg:max-w-full">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 mb-4">
