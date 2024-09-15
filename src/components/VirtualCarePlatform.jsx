@@ -20,7 +20,7 @@ const VirtualCarePlatform = () => {
           <img
             src={laptopImage}
             alt="Virtual Care Platform"
-            className="w-full h-auto max-w-md"
+            className="w-full lg:h-80 h-auto max-w-md"
           />
         </div>
       </div>
