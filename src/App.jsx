@@ -7,10 +7,13 @@ import Blogs from './pages/Blogs'; // Import the Blogs page
 import Contact from './pages/Contact'; // Import the Contact page
 import Doctors from './pages/Doctors'; // Import the Doctors page
 import Patients from './pages/Patients'; // Import the Patients page
+import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component
 
 function App() {
   return (
     <Router>
+        <ScrollToTop /> {/* Ensure this is placed inside the Router */}
+
       <Navbar /> {/* Navbar that stays constant across all pages */}
       <Routes>
         <Route path="/" element={<Home />} /> {/* Home Page */}
