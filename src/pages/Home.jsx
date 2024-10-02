@@ -10,7 +10,8 @@ import WhyChooseKifayti from '../components/WhyChooseKifayti'
 
 const Home = () => {
   return (
-    <>    
+    <>   
+     
     <HomeSection/>
     <KidneyCareEcosystem/>
     <RecognizedBy/>
@@ -18,7 +19,8 @@ const Home = () => {
     <SupportAndEducation/>
     <ReviewSlider/>
     <ContactUs/>
-    <Footer/></>
+    <Footer/>
+    </>
 
    )
 }

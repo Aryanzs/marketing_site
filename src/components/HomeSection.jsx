@@ -30,7 +30,7 @@ const HomeSection = () => {
                 </div>
 
                 {/* Right Kidney Image with floating animation */}
-                <div className="w-2/3 sm:w-1/2 md:w-1/3 flex justify-center animate-floating mt-8">
+                <div className="w-2/3 sm:w-1/2 md:w-1/3 flex justify-center animate-floating mx-auto mt-8">
                     <img 
                         src={kidneyImage2} 
                         alt="Kidney" 

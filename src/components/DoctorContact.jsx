@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const   DoctorContact = () => {
+const DoctorContact = () => {
   // Helper function to manage animations and in-view detection
   const useScrollAnimation = (threshold = 0.2) => {
     const controls = useAnimation();
@@ -33,19 +33,21 @@ const   DoctorContact = () => {
   };
 
   return (
-    <div className="bg-white text-center py-12">
+    <div className="bg-white text-center py-12 px-4 md:px-10 lg:px-20">
+      {/* Text Heading 1 */}
       <motion.h1
         ref={refH2}
-        className="text-4xl font-bold"
+        className="text-2xl md:text-3xl lg:text-4xl font-bold"
         initial="hidden"
         animate={controlsH2}
         variants={textVariant}
       >
         Join Our
       </motion.h1>
+      {/* Text Heading 2 */}
       <motion.h2
         ref={refH1}
-        className="text-4xl font-bold mb-4"
+        className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
         initial="hidden"
         animate={controlsH1}
         variants={textVariant}
@@ -53,27 +55,32 @@ const   DoctorContact = () => {
       >
         Community Of Doctors
       </motion.h2>
+      {/* Description Text */}
       <motion.p
         ref={refP}
-        className="text-lg mb-8"
+        className="text-base md:text-lg lg:text-xl mb-8"
         initial="hidden"
         animate={controlsP}
         variants={textVariant}
         transition={{ delay: 0.4 }} // Delay to stagger animations
       >
-        At Kifayti Health, we are dedicated to transforming kidney care and empowering <br />
-        patients. Join our community and take the first step towards a healthier, more <br />
+        At Kifayti Health, we are dedicated to transforming kidney care and empowering <br className="hidden md:block" />
+        patients. Join our community and take the first step towards a healthier, more <br className="hidden md:block" />
         vibrant life.
       </motion.p>
-      <div className="flex justify-center items-center mt-8 mb-20">
+
+      {/* Input and Button Container */}
+      <div className="flex flex-col md:flex-row justify-center items-center mt-8 mb-20 space-y-4 md:space-y-0 md:space-x-4">
+        {/* Input Field */}
         <motion.div
           ref={refInput}
-          className="flex relative items-center bg-white shadow-2xl overflow-hidden"
+          className="flex items-center bg-white shadow-xl rounded-md overflow-hidden w-full md:w-auto"
           initial="hidden"
           animate={controlsInput}
           variants={textVariant}
           transition={{ delay: 0.6 }} // Delay to stagger animations
         >
+          {/* Icon */}
           <div className="px-4 py-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -90,15 +97,18 @@ const   DoctorContact = () => {
               />
             </svg>
           </div>
+          {/* Input Field */}
           <input
             type="email"
             placeholder="youremail123@gmail.com"
-            className="bg-white w-[440px] p-4 outline-none text-gray-700 placeholder-gray-400"
+            className="bg-white w-full md:w-[400px] lg:w-[440px] p-4 outline-none text-gray-700 placeholder-gray-400"
           />
         </motion.div>
+
+        {/* Subscribe Button */}
         <motion.button
           ref={refButton}
-          className="bg-red-500 absolute text-white px-8 py-3 mt-10 ml-[500px]"
+          className="bg-red-500 text-white px-8 py-3 rounded-md shadow-lg w-full md:w-auto"
           initial="hidden"
           animate={controlsButton}
           variants={textVariant}

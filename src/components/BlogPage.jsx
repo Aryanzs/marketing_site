@@ -8,9 +8,9 @@ const cardVariants = (direction) => {
       opacity: 0,
       x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
     },
-    visible: { 
-      opacity: 1, 
-      x: 0, 
+    visible: {
+      opacity: 1,
+      x: 0,
       transition: { duration: 0.8, ease: 'easeInOut' },
     },
   };
@@ -22,17 +22,16 @@ const BlogPage = () => {
   const leftColumnRef = useRef(null);
   const rightColumnRef = useRef(null);
 
-  // Function to observe elements when they enter the viewport
   const observeElements = (ref, controls) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          controls.start('visible'); // Start animation when in view
+          controls.start('visible');
         } else {
-          controls.start('hidden'); // Reset when out of view (optional)
+          controls.start('hidden');
         }
       },
-      { threshold: 0.1 } // Trigger animation when 10% of the element is visible
+      { threshold: 0.1 }
     );
     if (ref.current) {
       observer.observe(ref.current);
@@ -40,24 +39,27 @@ const BlogPage = () => {
   };
 
   useEffect(() => {
-    observeElements(leftColumnRef, controlsLeft);  // Observe left column
-    observeElements(rightColumnRef, controlsRight); // Observe right column
+    observeElements(leftColumnRef, controlsLeft);
+    observeElements(rightColumnRef, controlsRight);
   }, [controlsLeft, controlsRight]);
 
   return (
-    <section className="bg-gray-50 py-20 px-4 md:px-16">
-      <h1 className="font-bold text-5xl px-10">Blog section</h1>
+    <section className="bg-gray-50 py-20 px-4 md:px-16 max-w-full mx-auto">
+      {/* Section Heading */}
+      <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl px-6 md:px-10 mb-10 text-center md:text-left">
+        Blog Section
+      </h1>
       <Blogpost />
 
-      {/* New Section: Two Columns */}
-      <div className="grid grid-cols-1 md:grid-cols-[1fr,2fr] gap-4 mt-10 px-2 md:px-8 max-w-full md:max-w-[1310px] mx-auto">
+      {/* Blog Post Columns */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 px-2 md:px-8 max-w-full md:max-w-[1310px] mx-auto">
         {/* First Column */}
-        <div ref={leftColumnRef} className="flex flex-col gap-4">
+        <div ref={leftColumnRef} className="flex flex-col gap-6">
           <motion.div
-            className="border-2 border-teal-400 rounded-lg p-4"
+            className="border-2 border-teal-400 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
             initial="hidden"
             animate={controlsLeft}
-            variants={cardVariants('left')} // Coming from the left
+            variants={cardVariants('left')}
           >
             <div className="text-xs text-gray-500 mb-2 flex font-bold">
               <img
@@ -67,7 +69,7 @@ const BlogPage = () => {
               />
               News
             </div>
-            <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
               This Is The Title Of <br />The Article That’s Published
             </h3>
             <p className="text-sm text-gray-500 mt-4 mb-2">
@@ -76,10 +78,10 @@ const BlogPage = () => {
           </motion.div>
 
           <motion.div
-            className="border-2 border-teal-400 rounded-lg p-4"
+            className="border-2 border-teal-400 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
             initial="hidden"
             animate={controlsLeft}
-            variants={cardVariants('left')} // Coming from the left
+            variants={cardVariants('left')}
           >
             <div className="text-xs text-gray-500 mb-2 flex font-bold">
               <img
@@ -89,7 +91,7 @@ const BlogPage = () => {
               />
               News
             </div>
-            <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
               This Is The Title Of <br />The Article That’s Published
             </h3>
             <p className="text-sm text-gray-500 mt-4 mb-2">
@@ -101,10 +103,10 @@ const BlogPage = () => {
         {/* Second Column */}
         <motion.div
           ref={rightColumnRef}
-          className="border-2 border-teal-400 rounded-lg p-4"
+          className="border-2 border-teal-400 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
           initial="hidden"
           animate={controlsRight}
-          variants={cardVariants('right')} // Coming from the right
+          variants={cardVariants('right')}
         >
           <div className="text-xs font-bold text-gray-500 mb-2 flex">
             <img
@@ -119,7 +121,7 @@ const BlogPage = () => {
             src="https://via.placeholder.com/400"
             alt="Article"
           />
-          <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
+          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
             This Is The Title Of <br />The Article That’s Published
           </h3>
           <p className="text-sm text-gray-500 mt-4">
