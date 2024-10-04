@@ -7,7 +7,7 @@ const BlogSearchSection = () => {
       {/* Text and Search Section */}
       <div className="flex flex-col items-center lg:items-start mb-8 lg:mb-0 lg:mr-8 text-center lg:text-left w-full lg:w-auto">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
-          Your Kidney Care
+          Your Kidney Care                                                                                                
         </h1>
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-500 mt-2">
           Resource Library

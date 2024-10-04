@@ -142,4 +142,4 @@ const Blogpost = () => {
   )
 }
 
-export default Blogpost
+export default Blogpost;
