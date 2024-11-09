@@ -9,7 +9,9 @@ const OpenRoles = () => {
     { id: 2, title: "Career Option 2", location: "Location 2", department: "Department 2" },
     { id: 3, title: "Career Option 3", location: "Location 3", department: "Department 3" },
     { id: 4, title: "Career Option 4", location: "Location 4", department: "Department 4" },
-  ];
+    { id: 5, title: "Career Option 5", location: "Location 5", department: "Department 5" },
+    { id: 6, title: "Career Option 6", location: "Location 6", department: "Department 6" },
+ ];
 
   return (
     <div className="min-h-screen  p-4 sm:p-8 md:p-16">

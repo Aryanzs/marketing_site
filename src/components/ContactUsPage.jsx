@@ -1,5 +1,5 @@
 import React from 'react';
-import phone from "../assets/images/telephonedalle-removebg.png";
+import phone from "../assets/figma images/phone call 1.png";
 
 const ContactUsPage = () => {
   return (

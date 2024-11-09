@@ -1,14 +1,16 @@
 import React from 'react';
 import "../components/Recognizedby.css";
 import iimbimg from "../assets/images/iimb.png";
-import iimbnrscelimg from "../assets/images/iimbnsrcel.png";
 import usembimg from "../assets/images/usemabssy.png";
 import nexus from "../assets/images/nexus-logo-headline-with-subline.png";
 import iitm from "../assets/images/logo-black.png";
 import GINSERV from "../assets/images/ginserv.png";
+import wee from "../assets/figma images/wee.png";
+import strtup from "../assets/figma images/10000strtup.png";
+import iitd from "../assets/figma images/Indian_Institute_of_Technology_Delhi_Logo.svg.png";
 
 const RecognizedBy = () => {
-    const logos = [iimbimg, iimbnrscelimg, usembimg, nexus, iitm, GINSERV]; // Add more logos here
+    const logos = [iimbimg,  usembimg, nexus, iitm, GINSERV,wee,strtup,iitd]; // Add more logos here
 
     return (
         

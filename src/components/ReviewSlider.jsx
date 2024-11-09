@@ -65,7 +65,7 @@ const Testimonials = () => {
             What Are People <br /> Saying About Us
           </h2>
           <div className="text-center lg:text-right">
-            <button className="bg-teal-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-teal-700 transition-colors w-full lg:w-auto">
+            <button className="bg-teal-600 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-teal-700 transition-all duration-300 w-full lg:w-auto hover:shadow-xl transform hover:-translate-y-0.5">
               Request Callback &rarr;
             </button>
           </div>
@@ -76,27 +76,39 @@ const Testimonials = () => {
           <Slider {...sliderSettings} className="testimonial-slider">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="px-2 mb-8">
-                <div className="bg-white p-6 rounded-lg shadow-xl text-left h-full mx-2 flex flex-col justify-between">
-                  <div className="mb-4">
-                    {/* Quote Icon */}
-                    <svg
-                      className="w-12 h-12 text-teal-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M7.5 11C5.01472 11 3 8.98528 3 6.5C3 4.01472 5.01472 2 7.5 2C9.98528 2 12 4.01472 12 6.5C12 9.98528 9.98528 12 7.5 12C7.22386 12 7 11.7761 7 11.5V8.5C7 8.22386 7.22386 8 7.5 8C8.32843 8 9 7.32843 9 6.5C9 5.67157 8.32843 5 7.5 5C6.67157 5 6 5.67157 6 6.5C6 6.77614 5.77614 7 5.5 7H4C3.72386 7 3.5 6.77614 3.5 6.5C3.5 5.11929 4.61929 4 6 4C7.38071 4 8.5 5.11929 8.5 6.5C8.5 7.88071 7.38071 9 6 9C4.61929 9 3.5 7.88071 3.5 6.5C3.5 4.01472 5.51472 2 8 2C10.4853 2 12.5 4.01472 12.5 6.5C12.5 9.98528 10.4853 12 8 12H7.5V11Z"></path>
-                    </svg>
+                <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-left h-full mx-2 flex flex-col justify-between relative overflow-hidden group">
+                  {/* Decorative elements */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-full -mr-12 -mt-12 transition-transform duration-300 group-hover:scale-110"></div>
+                  
+                  <div className="relative">
+                    {/* Quote Icon with enhanced styling */}
+                    <div className="mb-6 relative">
+                      <div className="absolute -left-2 -top-2 w-12 h-12 bg-teal-50 rounded-full"></div>
+                      <svg
+                        className="w-8 h-8 text-teal-600 relative z-10"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                    </div>
+                    
+                    {/* Testimonial Text with enhanced typography */}
+                    <p className="text-gray-700 text-lg font-medium mb-6 leading-relaxed relative z-10">
+                      "{testimonial.text}"
+                    </p>
                   </div>
-                  {/* Testimonial Text */}
-                  <p className="text-gray-700 italic font-medium mb-4">
-                    "{testimonial.text}"
-                  </p>
-                  {/* Testimonial Name and Location */}
-                  <p className="font-semibold text-teal-600">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-teal-600">{testimonial.location}</p>
+                  
+                  {/* Testimonial Author Info with enhanced styling */}
+                  <div className="relative z-10 border-t pt-4 mt-4 border-gray-100">
+                    <p className="font-bold text-teal-600 text-lg">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-teal-500 font-medium">
+                      {testimonial.location}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -104,13 +116,22 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Style adjustments for the slider */}
+      {/* Enhanced slider styles */}
       <style jsx>{`
         .testimonial-slider .slick-slide > div {
-          margin: 0 10px;
+          margin: 0 15px;
         }
         .testimonial-slider {
-          margin: 0 -10px;
+          margin: 0 -15px;
+        }
+        .testimonial-slider .slick-dots li button:before {
+          font-size: 12px;
+          color: #0D9488;
+          opacity: 0.5;
+        }
+        .testimonial-slider .slick-dots li.slick-active button:before {
+          opacity: 1;
+          color: #0D9488;
         }
       `}</style>
     </section>

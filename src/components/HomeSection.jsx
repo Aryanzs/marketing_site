@@ -1,7 +1,7 @@
 
 import React from 'react';
-import kidneyImage1 from '../assets/images/kidney-left.png';
-import kidneyImage2 from '../assets/images/kidney-right.png';
+import kidneyImage1 from '../assets/figma images/Kidney 4.png';
+import kidneyImage2 from '../assets/figma images/Kidney 3.png';
 import "../components/HomeSection.css"
 
 const HomeSection = () => {

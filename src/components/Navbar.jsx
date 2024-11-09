@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from "../assets/figma images/logo 1.png"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,15 +20,15 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-white bg-opacity-30 backdrop-blur-lg shadow-lg fixed w-full z-20">
+    <nav className="bg-white bg-opacity-30 backdrop-blur-lg shadow-lg fixed w-full  z-20">
       <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         {/* Logo Section */}
         <Link to="/" className="text-2xl font-bold text-teal-800 flex items-center">
           {/* Include a logo image or icon if necessary */}
           <img
-            src="https://via.placeholder.com/40" // Replace with your logo image
+            src={logo} // Replace with your logo image
             alt="Kifayti Health Logo"
-            className="w-8 h-8 mr-2"
+            className="w-10 h-10 mr-2"
           />
           Kifayti Health
         </Link>

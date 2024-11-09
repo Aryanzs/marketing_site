@@ -1,76 +1,162 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
   }
-  
-  body {
-    background: #f2f2f2;
+  to {
+    transform: translateX(-100%);
   }
-  
-  @keyframes slide {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-100%);
-    }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1) translateY(0);
   }
-  
+  50% {
+    transform: scale(1.02) translateY(-3px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.logos {
+  overflow: hidden;
+  padding: 80px 0;
+  background: transparent;
+  white-space: nowrap;
+  position: relative;
+  margin-top: 20px;
+}
+
+.logos:before,
+.logos:after {
+  position: absolute;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  content: "";
+  z-index: 2;
+  pointer-events: none; /* Ensures the gradients don't interfere with clicks */
+}
+
+.logos:before {
+  left: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
+}
+
+.logos:after {
+  right: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
+}
+
+.logos-slide {
+  display: inline-block;
+  animation: slide 30s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* Don't pause the entire animation on hover anymore */
+.logos-slide img {
+  height: 75px;
+  margin: 0 65px;
+  display: inline-block;
+  opacity: 0.9;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  filter: grayscale(30%);
+  /* Remove default floating animation */
+}
+
+/* Enhanced hover effects */
+.logos-slide img:hover {
+  opacity: 1;
+  transform: scale(1.15);
+  filter: grayscale(0%) drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
   .logos {
-    overflow: hidden;
-    padding: 60px 0;
-    background: white;
-    white-space: nowrap;
-    position: relative;
-    margin-top: 20px;
+    padding: 50px 0;
   }
-  
-  .logos:before,
-  .logos:after {
-    position: absolute;
-    top: 0;
-    width: 150px; /* Adjust to make gradient wider or narrower */
-    height: 100%;
-    content: "";
-    z-index: 2;
-  }
-  
-  .logos:before {
-    left: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-  }
-  
-  .logos:after {
-    right: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-  }
-  
+
   .logos-slide {
-    display: inline-block;
-    animation: slide 20s linear infinite;
-    white-space: nowrap; /* Keep the logos in one line */
-    will-change: transform;
-    transition: transform 0.3s ease; /* Smooth transition */
+    animation: slide 25s linear infinite; /* Slightly faster on mobile */
   }
-  
-  /* Slow down on hover without resetting animation */
-  .logos:hover .logos-slide {
-    animation-play-state: paused; /* Pause animation */
-    transition: transform 0.3s ease;
-    transform: translateX(calc(-50%)); /* Apply slower effect dynamically */
-  }
-  
+
   .logos-slide img {
-    height: 50px;
+    height: 48px;
     margin: 0 40px;
-    display: inline-block;
+    touch-action: pan-y pinch-zoom; /* Better touch handling */
+    -webkit-tap-highlight-color: transparent;
   }
-  
-  @media (max-width: 768px) {
-    .logos-slide img {
-      height: 30px;
-      margin: 0 20px;
+
+  /* Mobile touch effects */
+  @media (hover: none) {
+    .logos-slide img:active {
+      opacity: 1;
+      transform: scale(1.15);
+      filter: grayscale(0%) drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+    }
+    
+    /* Prevent animation pause on touch */
+    .logos:active .logos-slide {
+      animation-play-state: running;
     }
   }
+}
+
+/* Add alternating vertical offset for more visual interest */
+.logos-slide img:nth-child(even) {
+  transform: translateY(-5px);
+}
+
+.logos-slide img:nth-child(odd) {
+  transform: translateY(5px);
+}
+
+/* Maintain the offset during hover */
+.logos-slide img:nth-child(even):hover {
+  transform: translateY(-5px) scale(1.15);
+}
+
+.logos-slide img:nth-child(odd):hover {
+  transform: translateY(5px) scale(1.15);
+}
+
+/* Add shine effect on hover */
+@keyframes shine {
+  0% {
+    filter: brightness(100%) grayscale(30%);
+  }
+  50% {
+    filter: brightness(120%) grayscale(0%);
+  }
+  100% {
+    filter: brightness(100%) grayscale(30%);
+  }
+}
+
+.logos-slide img:hover {
+  animation: shine 2s infinite;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .logos-slide {
+    animation-duration: 40s;
+  }
   
+  .logos-slide img:hover {
+    animation: none;
+    transform: scale(1.1);
+  }
+}

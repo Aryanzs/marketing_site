@@ -91,9 +91,9 @@
 import React from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import card1img from '../assets/images/specialist1.png';
-import card2img from '../assets/images/customer1.png';
-import card3img from '../assets/images/medicine1.png';
+import card1img from '../assets/figma images/medical-professional-edit 1.png';
+import card2img from '../assets/figma images/customer-relationship 1.png';
+import card3img from '../assets/figma images/colorful-pills-lying-glass 1.png';
 
 // Animation variants for cards and header
 const cardVariants = {

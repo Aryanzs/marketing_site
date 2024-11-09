@@ -1,18 +1,22 @@
-
 import React from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import card1img from '../assets/images/specialist1.png';
-import card2img from '../assets/images/customer1.png';
-import card3img from '../assets/images/medicine1.png';
+import card1img from '../assets/figma images/Hospital Bed.png';
+import card2img from '../assets/figma images/_0042.png';
+import card3img from '../assets/figma images/Image.png';
+import card4img from '../assets/figma images/Asset 1 1.png';
+import card5img from '../assets/figma images/_0036.png';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' },
-  },
+    transition: { 
+      duration: 0.6,
+      ease: [0.645, 0.045, 0.355, 1.000]
+    },
+  }
 };
 
 const headerVariants = {
@@ -20,110 +24,211 @@ const headerVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
+    transition: { 
+      duration: 0.8,
+      ease: [0.645, 0.045, 0.355, 1.000]
+    },
+  }
 };
 
 const WhyChooseKifayti = () => {
   const controls1 = useAnimation();
   const controls2 = useAnimation();
   const controls3 = useAnimation();
+  const controls4 = useAnimation();
+  const controls5 = useAnimation();
   const headerControls = useAnimation();
 
-  const [ref1, inView1] = useInView({ triggerOnce: false, threshold: 0.2 });
-  const [ref2, inView2] = useInView({ triggerOnce: false, threshold: 0.2 });
-  const [ref3, inView3] = useInView({ triggerOnce: false, threshold: 0.2 });
-  const [headerRef, headerInView] = useInView({ triggerOnce: false, threshold: 0.2 });
+  const [ref1, inView1] = useInView({ threshold: 0.2, triggerOnce: false });
+  const [ref2, inView2] = useInView({ threshold: 0.2, triggerOnce: false });
+  const [ref3, inView3] = useInView({ threshold: 0.2, triggerOnce: false });
+  const [ref4, inView4] = useInView({ threshold: 0.2, triggerOnce: false });
+  const [ref5, inView5] = useInView({ threshold: 0.2, triggerOnce: false });
+  const [headerRef, headerInView] = useInView({ threshold: 0.2, triggerOnce: false });
 
   React.useEffect(() => {
     if (inView1) controls1.start('visible');
-    if (!inView1) controls1.start('hidden');
+    else controls1.start('hidden');
   }, [controls1, inView1]);
 
   React.useEffect(() => {
     if (inView2) controls2.start('visible');
-    if (!inView2) controls2.start('hidden');
+    else controls2.start('hidden');
   }, [controls2, inView2]);
 
   React.useEffect(() => {
     if (inView3) controls3.start('visible');
-    if (!inView3) controls3.start('hidden');
+    else controls3.start('hidden');
   }, [controls3, inView3]);
 
   React.useEffect(() => {
+    if (inView4) controls4.start('visible');
+    else controls4.start('hidden');
+  }, [controls4, inView4]);
+
+  React.useEffect(() => {
+    if (inView5) controls5.start('visible');
+    else controls5.start('hidden');
+  }, [controls5, inView5]);
+
+  React.useEffect(() => {
     if (headerInView) headerControls.start('visible');
-    if (!headerInView) headerControls.start('hidden');
+    else headerControls.start('hidden');
   }, [headerControls, headerInView]);
 
   return (
-    <div className="bg-cover bg-blue-50 bg-center min-h-screen w-full flex justify-center items-center overflow-x-hidden">
-      <div className="py-12 w-full max-w-7xl px-4 lg:px-8">
-        <motion.h2
+    <div className="bg-gradient-to-b from-blue-50/90 to-blue-50/70 min-h-screen w-full flex justify-center items-center overflow-x-hidden py-20">
+      <div className="w-full max-w-7xl px-4 lg:px-8">
+        <motion.div
           ref={headerRef}
-          className="text-center text-4xl md:text-5xl font-bold text-gray-800 mb-16"
+          className="text-center mb-20"
           initial="hidden"
           animate={headerControls}
           variants={headerVariants}
         >
-            Why Choose <span className="text-orange-500">Kifayti?</span>
-            </motion.h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 inline-block relative">
+            Why Choose{' '}
+            <span className="text-orange-500 relative">
+              Kifayti?
+              <span className="absolute -bottom-2 left-0 w-full h-1.5 bg-orange-300/60 transform -rotate-1 rounded-full"></span>
+            </span>
+          </h2>
+          <div className="mt-4 w-24 h-1 bg-teal-500 mx-auto rounded-full"></div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* First Card */}
           <motion.div
             ref={ref1}
-            className="bg-white p-6 rounded-lg shadow-md flex flex-col text-left max-w-full"
+            className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col text-left group hover:-translate-y-1 active:scale-[0.99]"
             initial="hidden"
             animate={controls1}
             variants={cardVariants}
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 mb-4">
-              Enhanced Specialist
-              <br />
-              Access
-            </h2>
-            <p className="text-gray-700 mb-6">
-              Our holistic approach ensures that we look after your physical health and emotional well-being. We're here to support you every step of the way.
-            </p>
-            <img src={card1img} alt="Holistic Care" className="w-full h-[200px] md:h-[250px] flex-grow max-w-full" />
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 mb-4 group-hover:text-teal-800 transition-colors">
+                Enhanced Specialist
+                <br />
+                Access
+              </h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Our holistic approach ensures that we look after your physical health and emotional well-being. We're here to support you every step of the way.
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-xl flex-grow h-[250px] bg-gray-50/50 relative">
+              <img 
+                src={card1img} 
+                alt="Holistic Care" 
+                className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
           </motion.div>
 
-          <div className="grid gap-6">
+          <div className="grid gap-8">
+            {/* Second Card - Updated for better mobile view */}
             <motion.div
               ref={ref2}
-              className="bg-white p-6 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-3 items-center max-w-full"
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row items-center md:items-start gap-6 group hover:-translate-y-1 active:scale-[0.99]"
               initial="hidden"
               animate={controls2}
               variants={cardVariants}
             >
-              <div className="md:col-span-2 mt-6 mb-6 text-center md:text-left">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 mb-4">
+              <div className="flex-1 text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 mb-4 group-hover:text-teal-800 transition-colors">
                   Dedicated <br /> Patient Care <br /> Executive
                 </h2>
-                <p className="text-gray-700">We create personalized treatment plans tailored to your needs to provide you with the most effective care possible.</p>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  We create personalized treatment plans tailored to your needs to provide you with the most effective care possible.
+                </p>
               </div>
-              <div className="flex justify-center md:justify-end">
-                <img src={card2img} alt="Treatment Plan" className="w-24 md:w-40 h-[150px] md:h-[200px] lg:-mb-10 max-w-full" />
+              <div className="flex-shrink-0 w-40 h-40 md:w-48 md:h-48">
+                <img 
+                  src={card2img} 
+                  alt="Treatment Plan" 
+                  className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500" 
+                />
               </div>
             </motion.div>
 
+            {/* Third Card */}
             <motion.div
               ref={ref3}
-              className="bg-white p-6 rounded-lg shadow-md text-center max-w-full"
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 active:scale-[0.99]"
               initial="hidden"
               animate={controls3}
               variants={cardVariants}
             >
-              <div className="flex flex-col md:flex-row items-start justify-between mb-4">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 md:text-left mb-4 md:mb-0 md:mr-6">
+              <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-6 gap-6">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 text-center md:text-left mb-4 md:mb-0 group-hover:text-teal-800 transition-colors">
                   Discounted Medicines & <br /> Lab Tests
                 </h2>
-                <img src={card3img} alt="Health Monitoring" className="w-28 md:w-40 h-auto md:ml-6 max-w-full" />
+                <img 
+                  src={card3img} 
+                  alt="Health Monitoring" 
+                  className="w-40 md:w-48 h-auto object-contain transform group-hover:scale-110 transition-transform duration-500" 
+                />
               </div>
-              <p className="text-gray-700 md:text-left">
+              <p className="text-gray-700 text-center md:text-left text-lg leading-relaxed">
                 Our mobile app streamlines health monitoring, provides easy access to vital information, and facilitates seamless communication with your care team—wherever you are.
               </p>
             </motion.div>
           </div>
+        </div>
+
+        {/* Bottom Two Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+          {/* Fourth Card */}
+          <motion.div
+            ref={ref4}
+            className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1 active:scale-[0.99]"
+            initial="hidden"
+            animate={controls4}
+            variants={cardVariants}
+          >
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 mb-4 group-hover:text-teal-800 transition-colors">
+                Comprehensive Wellness
+              </h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                We provide resources and support to help you maintain wellness in all aspects of life, tailored to your unique journey.
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-xl flex-grow h-[250px] bg-gray-50/50 relative">
+              <img 
+                src={card4img} 
+                alt="Wellness" 
+                className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </motion.div>
+
+          {/* Fifth Card */}
+          <motion.div
+            ref={ref5}
+            className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1 active:scale-[0.99]"
+            initial="hidden"
+            animate={controls5}
+            variants={cardVariants}
+          >
+            <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 mb-4 group-hover:text-teal-800 transition-colors">
+                Personalized Support
+              </h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Our team is committed to delivering personalized support for every stage of your healthcare journey.
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-xl flex-grow h-[250px] bg-gray-50/50 relative">
+              <img 
+                src={card5img} 
+                alt="Support" 
+                className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>

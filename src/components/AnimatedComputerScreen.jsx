@@ -70,14 +70,20 @@ const AnimatedComputerScreen = () => {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
+      scale: 0.8,
+      rotateY: direction > 0 ? 45 : -45,
     }),
     center: {
       x: 0,
       opacity: 1,
+      scale: 1,
+      rotateY: 0,
     },
     exit: (direction) => ({
       x: direction < 0 ? 1000 : -1000,
       opacity: 0,
+      scale: 0.8,
+      rotateY: direction < 0 ? 45 : -45,
     }),
   };
 
@@ -85,20 +91,37 @@ const AnimatedComputerScreen = () => {
     enter: (direction) => ({
       y: direction > 0 ? 500 : -500,
       opacity: 0,
+      scale: 0.5,
+      rotate: direction > 0 ? -10 : 10,
     }),
     center: {
       y: 0,
       opacity: 1,
+      scale: 1,
+      rotate: 0,
     },
     exit: (direction) => ({
       y: direction < 0 ? 500 : -500,
       opacity: 0,
+      scale: 0.5,
+      rotate: direction < 0 ? -10 : 10,
     }),
+  };
+
+  const transition = {
+    type: 'spring',
+    stiffness: 300,
+    damping: 30,
   };
 
   return (
     <div className="relative h-screen overflow-hidden bg-gradient-to-b from-white to-gray-100">
-      <div className="absolute right-6 top-1/2 transform -translate-y-1/2 z-50">
+      <motion.div 
+        className="absolute right-6 top-1/2 transform -translate-y-1/2 z-50"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+      >
         <div className="flex flex-col space-y-4">
           {sections.map((_, index) => (
             <motion.span
@@ -107,13 +130,13 @@ const AnimatedComputerScreen = () => {
                 activeIndex === index ? 'bg-orange-500' : 'bg-gray-300'
               }`}
               animate={{
-                scale: activeIndex === index ? 1.2 : 1,
+                scale: activeIndex === index ? [1, 1.4, 1] : 1,
               }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.5, times: [0, 0.5, 1] }}
             />
           ))}
         </div>
-      </div>
+      </motion.div>
 
       <div 
         ref={containerRef}
@@ -135,28 +158,41 @@ const AnimatedComputerScreen = () => {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    transition={transition}
                   >
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-800">
                       {section.title.split(' ').map((word, i) => (
-                        <React.Fragment key={i}>
+                        <motion.span
+                          key={i}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.1, duration: 0.5 }}
+                        >
                           {section.highlightWords && section.highlightWords.includes(word) ? (
                             <span className="text-orange-500">{word} </span>
                           ) : (
                             word + ' '
                           )}
-                        </React.Fragment>
+                        </motion.span>
                       ))}
                     </h2>
                     {section.subtitle && (
-                      <p className={`text-2xl sm:text-3xl md:text-4xl font-bold ${section.subtitleColor || ''}`}>
+                      <motion.p 
+                        className={`text-2xl sm:text-3xl md:text-4xl font-bold ${section.subtitleColor || ''}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                      >
                         {section.subtitle}
-                      </p>
+                      </motion.p>
                     )}
                     <motion.button
                       className="mt-6 px-6 py-3 bg-orange-500 text-white rounded-full font-semibold shadow-lg hover:bg-orange-600 transition-colors duration-300"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7, duration: 0.5 }}
                     >
                       Learn More
                     </motion.button>
@@ -173,7 +209,7 @@ const AnimatedComputerScreen = () => {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    transition={transition}
                   >
                     <motion.div
                       className="w-full md:w-[550px] aspect-video border-8 border-gray-800 rounded-lg bg-white shadow-2xl overflow-hidden"
@@ -184,6 +220,9 @@ const AnimatedComputerScreen = () => {
                         src={section.image}
                         alt={`Screen content for ${section.title}`}
                         className="w-full h-full object-cover"
+                        initial={{ scale: 1.2, rotate: -5 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ delay: 0.2, duration: 0.8 }}
                       />
                     </motion.div>
                   </motion.div>

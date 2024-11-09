@@ -1,13 +1,18 @@
 import React from 'react';
+import insta from "../assets/figma images/Instagram.png";
+import fb from "../assets/figma images/Facebook.png";
+import bgimg from "../assets/figma images/Footer design.png";
+import kifayti from "../assets/figma images/kifaytifooterlogo 1.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-red-600 text-white py-16 relative overflow-hidden">
+    <footer className="text-white py-16 relative overflow-hidden">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 opacity-20 bg-cover bg-center z-0"
-        style={{ backgroundImage: `url('https://via.placeholder.com/1500x500')` }}
-      ></div>
+      <img
+        src={bgimg}
+        alt="Background Design"
+        className="absolute inset-0 w-full h-full object-cover  z-0"
+      />
 
       {/* Content Wrapper */}
       <div className="relative z-10 container mx-auto px-4 flex flex-col md:flex-row flex-wrap justify-between space-y-12 md:space-y-0">
@@ -15,8 +20,8 @@ const Footer = () => {
         <div className="w-full md:w-1/3 lg:w-1/4 space-y-4">
           <h2 className="text-xl font-semibold mb-4 flex items-center">
             <img
-              src="https://via.placeholder.com/50"
-              alt="Icon"
+              src={kifayti}
+              alt="Kifayti Logo"
               className="w-8 h-8 mr-2"
             />
             Kifayti Health
@@ -58,10 +63,10 @@ const Footer = () => {
             <h2 className="font-semibold text-lg mb-4">Follow us on Social Media</h2>
             <div className="flex space-x-4 justify-center">
               <a href="#" className="hover:opacity-75">
-                <img src="https://via.placeholder.com/40" alt="Facebook" className="w-8 h-8" />
+                <img src={fb} alt="Facebook" className="w-8 h-8" />
               </a>
               <a href="#" className="hover:opacity-75">
-                <img src="https://via.placeholder.com/40" alt="Instagram" className="w-8 h-8" />
+                <img src={insta} alt="Instagram" className="w-8 h-8" />
               </a>
             </div>
           </div>
