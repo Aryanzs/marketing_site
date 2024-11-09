@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Clock, TrendingUp, Wallet, Users, Truck, CheckSquare } from 'lucide-react';
+import backgroundImage from '../assets/figma images/and so much more.png'; // Add your background image here
+
 
 // Animation variants for cards and header
 const cardVariants = {
@@ -83,8 +85,14 @@ const FeaturesGrid = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-teal-50 min-h-screen w-full flex justify-center items-center">
-      <div className="py-12 z-[1] w-full max-w-7xl">
+<div
+      className="bg-gradient-to-b from-blue-50/90 to-blue-50/70  w-full flex justify-center items-center overflow-x-hidden py-8"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >       <div className="py-12 z-[1] w-full max-w-7xl">
         {/* Header with Animation */}
         <motion.h2
           ref={headerRef}

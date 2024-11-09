@@ -33,8 +33,8 @@ const AnotherContact = () => {
   };
 
   return (
-    <div className="bg-white text-center py-12 px-4 md:px-10 lg:px-20">
-      {/* Headings */}
+<div className="bg-gradient-to-b from-blue-50 to-teal-50 text-center py-12 px-4 md:px-10 lg:px-20">
+{/* Headings */}
       <motion.h2
         ref={refH2}
         className="text-2xl md:text-3xl lg:text-4xl font-bold"

@@ -146,7 +146,7 @@ const WhyChooseKifayti = () => {
   }, [headerControls, headerInView]);
 
   return (
-    <div className="bg-cover bg-blue-50 bg-center min-h-screen w-full flex justify-center items-center">
+    <div className="bg-cover  bg-center min-h-screen w-full flex justify-center items-center">
       <div className="py-12 z-[1] w-full max-w-7xl">
         {/* Header with Animation */}
         <motion.h2

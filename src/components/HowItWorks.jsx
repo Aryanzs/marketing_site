@@ -77,7 +77,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-teal-50 py-16">
+    <div className="bg-gradient-to-br  py-16">
       <div className="container lg:w-[1300px] mx-auto px-4">
         {/* Animated Heading */}
         <motion.h2

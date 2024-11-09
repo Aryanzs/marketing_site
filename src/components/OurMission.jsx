@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import backgroundImage from '../assets/figma images/Why us section.png';
+
 
 const OurMission = () => {
   const [ref, inView] = useInView({
@@ -33,7 +35,13 @@ const OurMission = () => {
   };
 
   return (
-    <section ref={ref} className="bg-gradient-to-br from-blue-50 to-teal-50 py-20 px-6 lg:px-12 overflow-hidden">
+    <section ref={ref} className="bg-gradient-to-b from-blue-50/90 to-blue-50/70 w-full flex justify-center items-center overflow-x-hidden py-20"
+    style={{
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+  >   
       <motion.div
         className="container mx-auto max-w-4xl"
         variants={containerVariant}

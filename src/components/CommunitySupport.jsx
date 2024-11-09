@@ -121,7 +121,7 @@ const CommunitySupport = () => {
   };
 
   return (
-    <div className="bg-blue-50 h-full py-12 px-4 sm:px-6 lg:px-8">
+    <div className=" h-full py-12 px-4 sm:px-6 lg:px-8">
       <motion.div
         className="max-w-5xl bg-white mx-auto text-center"
         initial="hidden"
