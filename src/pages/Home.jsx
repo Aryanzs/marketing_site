@@ -18,7 +18,6 @@ const Home = () => {
     <SupportAndEducation/>
     <ReviewSlider/>
     <RecognizedBy/>
-
     <ContactUs/>
     <Footer/>
     </>
