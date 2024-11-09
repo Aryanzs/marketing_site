@@ -78,7 +78,7 @@ function Footer() {
 
           {/* Bottom Row: Copyright */}
           <div className="text-xs">
-            <p>ALL RIGHTS RESERVED. COPYRIGHT OF KIFAYTI HEALTH PVT. LTD 2024</p>
+            <p>ALL RIGHTS RESERVED. COPYRIGHT OF KIFAYTI HEALTH PVT. LTD 2024.</p>
           </div>
         </div>
       </div>
