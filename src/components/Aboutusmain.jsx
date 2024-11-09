@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import foundersImage from '../assets/images/aboutusowner.png';
+// import foundersImage from '../assets/images/aboutusowner.png';
+import foundersImage from '../assets/figma images/cofounders.png';
+
 
 const Aboutusmain = () => {
   const [ref, inView] = useInView({
@@ -44,7 +46,7 @@ const Aboutusmain = () => {
           animate={inView ? "visible" : "hidden"}
           variants={variants}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="lg:w-1/2 relative"
+          className="lg:w-1/2 relative mt-10"
         >
           <div className="relative">
             <img
@@ -52,14 +54,14 @@ const Aboutusmain = () => {
               alt="Founders of Kifayti"
               className="w-full h-auto rounded-lg shadow-md"
             />
-            <div className="absolute bottom-4 left-4 text-white text-shadow">
+            {/* <div className="absolute bottom-4 left-4 text-white text-shadow">
               <p className="text-xl font-semibold">Aushtosh Pandey</p>
               <p className="text-sm">Co-Founder</p>
             </div>
             <div className="absolute bottom-4 right-4 text-white text-right text-shadow">
               <p className="text-xl font-semibold">Mansi Pandey</p>
               <p className="text-sm">Co-Founder</p>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       </div>
