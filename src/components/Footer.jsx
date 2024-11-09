@@ -11,7 +11,7 @@ const Footer = () => {
       <img
         src={bgimg}
         alt="Background Design"
-        className="absolute inset-0 w-full h-full object-cover  z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
       {/* Content Wrapper */}
@@ -58,22 +58,28 @@ const Footer = () => {
         </div>
 
         {/* Social Media and Copyright */}
-        <div className="w-full flex flex-col items-center md:items-start lg:items-end space-y-6 mt-10 lg:mt-0 md:w-1/3 lg:w-1/4">
-          <div className="text-center md:text-left">
-            <h2 className="font-semibold text-lg mb-4">Follow us on Social Media</h2>
-            <div className="flex space-x-4 justify-center">
+        <div className="w-full md:w-1/3 lg:w-1/4 space-y-4">
+          <h2 className="font-semibold text-lg mb-4">FOLLOW US on social media</h2>
+          <ul className="flex space-x-4">
+            <li>
               <a href="#" className="hover:opacity-75">
                 <img src={fb} alt="Facebook" className="w-8 h-8" />
               </a>
+            </li>
+            <li>
               <a href="#" className="hover:opacity-75">
                 <img src={insta} alt="Instagram" className="w-8 h-8" />
               </a>
-            </div>
-          </div>
-          <div className="text-center md:text-left text-xs">
-            <p>ALL RIGHTS RESERVED. COPYRIGHT OF KIFAYTI HEALTH PVT. LTD 2024</p>
-          </div>
+            </li>
+          </ul>
         </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="relative z-10 bg-opacity-50 -mb-10 py-3">
+        <p className="text-center text-xs">
+          ALL RIGHTS RESERVED. COPYRIGHT OF KIFAYTI HEALTH PVT. LTD 2024
+        </p>
       </div>
     </footer>
   );

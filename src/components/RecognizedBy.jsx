@@ -8,13 +8,21 @@ import GINSERV from "../assets/images/ginserv.png";
 import wee from "../assets/figma images/wee.png";
 import strtup from "../assets/figma images/10000strtup.png";
 import iitd from "../assets/figma images/Indian_Institute_of_Technology_Delhi_Logo.svg.png";
+import backgroundImage from '../assets/figma images/recognized by.png';
+
 
 const RecognizedBy = () => {
     const logos = [iimbimg,  usembimg, nexus, iitm, GINSERV,wee,strtup,iitd]; // Add more logos here
 
     return (
         
-      <div className="logos">
+      <div  className=" logos bg-gradient-to-b from-blue-50/90 to-blue-50/70 w-full flex justify-center items-center overflow-x-hidden py-20"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >   
               <h2 className="text-center text-2xl font-bold mb-6">Recognized By</h2>
 
         <div className="logos-slide">

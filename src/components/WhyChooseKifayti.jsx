@@ -6,6 +6,7 @@ import card2img from '../assets/figma images/_0042.png';
 import card3img from '../assets/figma images/Image.png';
 import card4img from '../assets/figma images/Asset 1 1.png';
 import card5img from '../assets/figma images/_0036.png';
+import backgroundImage from '../assets/figma images/Why us section.png'; // Add your background image here
 
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -77,7 +78,14 @@ const WhyChooseKifayti = () => {
   }, [headerControls, headerInView]);
 
   return (
-    <div className="bg-gradient-to-b from-blue-50/90 to-blue-50/70 min-h-screen w-full flex justify-center items-center overflow-x-hidden py-20">
+<div
+      className="bg-gradient-to-b from-blue-50/90 to-blue-50/70 min-h-screen w-full flex justify-center items-center overflow-x-hidden py-20"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >    
       <div className="w-full max-w-7xl px-4 lg:px-8">
         <motion.div
           ref={headerRef}

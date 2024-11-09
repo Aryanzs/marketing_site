@@ -14,10 +14,11 @@ const Home = () => {
      
     <HomeSection/>
     <KidneyCareEcosystem/>
-    <RecognizedBy/>
     <WhyChooseKifayti/>
     <SupportAndEducation/>
     <ReviewSlider/>
+    <RecognizedBy/>
+
     <ContactUs/>
     <Footer/>
     </>
