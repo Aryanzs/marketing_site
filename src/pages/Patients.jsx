@@ -34,12 +34,7 @@ const Patients = () => {
     </div>
 
     <div
-      className="bg-gradient-to-b from-blue-50/90 to-blue-50/70  w-full flex justify-center items-center overflow-x-hidden py-20"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
+    
     >  
     <HowItWorks/>
     </div>
