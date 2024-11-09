@@ -10,20 +10,19 @@ import strtup from "../assets/figma images/10000strtup.png";
 import iitd from "../assets/figma images/Indian_Institute_of_Technology_Delhi_Logo.svg.png";
 import backgroundImage from '../assets/figma images/recognized by.png';
 
-
 const RecognizedBy = () => {
-    const logos = [iimbimg,  usembimg, nexus, iitm, GINSERV,wee,strtup,iitd]; // Add more logos here
+    const logos = [iimbimg, usembimg, nexus, iitm, GINSERV, wee, strtup, iitd];
 
     return (
-        
-      <div  className=" logos bg-gradient-to-b from-blue-50/90 to-blue-50/70 w-full flex justify-center items-center overflow-x-hidden py-20"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >   
-              <h2 className="text-center text-2xl font-bold mb-6">Recognized By</h2>
+      <div 
+        className="logos bg-gradient-to-b from-blue-50/90 to-blue-50/70 w-full flex flex-col justify-center items-center overflow-x-hidden py-20"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <h2 className="text-4xl font-bold text-center text-gray-800 mb-10 -mt-8">Recognized By</h2>
 
         <div className="logos-slide">
           {/* Display logos twice for seamless scrolling */}
@@ -33,7 +32,7 @@ const RecognizedBy = () => {
           {logos.map((logo, index) => (
             <img key={index + logos.length} src={logo} alt={`Logo ${index}`} />
           ))}
-            {logos.map((logo, index) => (
+          {logos.map((logo, index) => (
             <img key={index} src={logo} alt={`Logo ${index}`} />
           ))}
           {logos.map((logo, index) => (
@@ -42,6 +41,6 @@ const RecognizedBy = () => {
         </div>
       </div>
     );
-  };
+};
 
 export default RecognizedBy;

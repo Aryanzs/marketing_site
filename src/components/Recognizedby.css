@@ -45,15 +45,7 @@
   pointer-events: none; /* Ensures the gradients don't interfere with clicks */
 }
 
-.logos:before {
-  left: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
-}
 
-.logos:after {
-  right: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
-}
 
 .logos-slide {
   display: inline-block;
@@ -65,7 +57,7 @@
 /* Don't pause the entire animation on hover anymore */
 .logos-slide img {
   height: 75px;
-  margin: 0 65px;
+  margin: 0 40px;
   display: inline-block;
   opacity: 0.9;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
