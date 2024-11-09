@@ -4,85 +4,86 @@ import fb from "../assets/figma images/Facebook.png";
 import bgimg from "../assets/figma images/Footer design.png";
 import kifayti from "../assets/figma images/kifaytifooterlogo 1.png";
 
-const Footer = () => {
+function Footer() {
   return (
-    <footer className="text-white py-16 relative overflow-hidden">
-      {/* Background Image */}
-      <img
-        src={bgimg}
-        alt="Background Design"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      />
-
-      {/* Content Wrapper */}
-      <div className="relative z-10 container mx-auto px-4 flex flex-col md:flex-row flex-wrap justify-between space-y-12 md:space-y-0">
-        {/* Left Section */}
-        <div className="w-full md:w-1/3 lg:w-1/4 space-y-4">
-          <h2 className="text-xl font-semibold mb-4 flex items-center">
-            <img
-              src={kifayti}
-              alt="Kifayti Logo"
-              className="w-8 h-8 mr-2"
-            />
-            Kifayti Health
-          </h2>
-          <address className="not-italic leading-relaxed">
-            <p>8/2, Beratan Agrahara Chikkabegur, Bangalore,</p>
-            <p>Karnataka 560100</p>
-          </address>
-          <p className="mt-4 text-sm">
-            <span className="font-semibold">CUSTOMER SUPPORT:</span> +91 98840 40400
-          </p>
-          <p className="text-sm">
-            <span className="font-semibold">FOR ENQUIRIES:</span> contactus@kifaytihealth.com
-          </p>
+    <footer
+      className="text-white py-10 px-4 md:px-8 bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgimg})` }}
+    >
+      <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
+        
+        {/* Left Column */}
+        <div className="space-y-6 text-left">
+          {/* Logo and Heading */}
+          <div className="flex flex-col items-start md:flex-row md:items-start">
+            <img src={kifayti} alt="kifayti logo" className="w-12 h-12" />
+            <h2 className="text-3xl ml-0 md:ml-3 font-semibold mt-2">Kifayti Health</h2>
+          </div>
+          
+          {/* Address */}
+          <div>
+            <h3>ADDRESS</h3>
+            <p className="text-sm">8/2, Beratan Agrahara Chikkabegur, Bangalore, Karnataka 560100</p>
+          </div>
+          
+          {/* Customer Support */}
+          <div>
+            <h3>CUSTOMER SUPPORT</h3>
+            <p className="text-sm">+91 98840 40400</p>
+          </div>
+          
+          {/* For Enquiries */}
+          <div>
+            <h3>FOR ENQUIRIES</h3>
+            <p className="text-sm">contactus@kifaytihealth.com</p>
+          </div>
         </div>
 
-        {/* Center Section */}
-        <div className="w-full md:w-1/3 lg:w-1/4 space-y-4">
-          <h2 className="font-semibold text-lg mb-4">COMPANY</h2>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">About us</a></li>
-            <li><a href="#" className="hover:underline">Contact us</a></li>
-          </ul>
-        </div>
+        {/* Right Column */}
+        <div className="space-y-8 text-left md:text-right">
+          {/* Top Row: Company and Services */}
+          <div className="grid grid-cols-2 gap-8">
+            {/* Company Section */}
+            <div className="space-y-4">
+              <h3 className="font-bold">COMPANY</h3>
+              <ul className="space-y-2">
+                <li><a href="#about" className="hover:underline">About us</a></li>
+                <li><a href="#contact" className="hover:underline">Contact us</a></li>
+              </ul>
+            </div>
 
-        {/* Right Section */}
-        <div className="w-full md:w-1/3 lg:w-1/4 space-y-4">
-          <h2 className="font-semibold text-lg mb-4">SERVICES</h2>
-          <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">For Patients</a></li>
-            <li><a href="#" className="hover:underline">For Doctors</a></li>
-            <li><a href="#" className="hover:underline">For Institutions</a></li>
-          </ul>
-        </div>
+            {/* Services Section */}
+            <div className="space-y-4">
+              <h3 className="font-bold">SERVICES</h3>
+              <ul className="space-y-2">
+                <li><a href="#patients" className="hover:underline">For Patients</a></li>
+                <li><a href="#doctors" className="hover:underline">For Doctors</a></li>
+                <li><a href="#institutions" className="hover:underline">For Institutions</a></li>
+              </ul>
+            </div>
+          </div>
 
-        {/* Social Media and Copyright */}
-        <div className="w-full md:w-1/3 lg:w-1/4 space-y-4">
-          <h2 className="font-semibold text-lg mb-4">FOLLOW US on social media</h2>
-          <ul className="flex space-x-4">
-            <li>
-              <a href="#" className="hover:opacity-75">
+          {/* Middle Row: Social Media */}
+          <div>
+            <h3 className="font-bold">Follow us on Social Media</h3>
+            <div className="flex justify-start md:justify-end space-x-2 mt-2">
+              <a href="#facebook" className="p-2 rounded-full">
                 <img src={fb} alt="Facebook" className="w-8 h-8" />
               </a>
-            </li>
-            <li>
-              <a href="#" className="hover:opacity-75">
+              <a href="#instagram" className="p-2 rounded-full">
                 <img src={insta} alt="Instagram" className="w-8 h-8" />
               </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+            </div>
+          </div>
 
-      {/* Bottom Section */}
-      <div className="relative z-10 bg-opacity-50 -mb-10 py-3">
-        <p className="text-center text-xs">
-          ALL RIGHTS RESERVED. COPYRIGHT OF KIFAYTI HEALTH PVT. LTD 2024
-        </p>
+          {/* Bottom Row: Copyright */}
+          <div className="text-xs">
+            <p>ALL RIGHTS RESERVED. COPYRIGHT OF KIFAYTI HEALTH PVT. LTD 2024</p>
+          </div>
+        </div>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;
