@@ -37,7 +37,10 @@ const FeatureCard = ({ icon: Icon, description, index }) => {
   return (
     <motion.div
       ref={ref}
-      className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 max-w-xs mx-auto"
+      className="bg-white p-6 rounded-lg transform transition duration-300 hover:scale-105 max-w-xs mx-auto"
+      style={{
+        boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)', // Custom shadow with dark bluish tone
+      }}
       initial="hidden"
       animate={controls}
       variants={variants}
@@ -77,7 +80,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br  py-16">
+    <div className="bg-gradient-to-br py-16">
       <div className="container lg:w-[1300px] mx-auto px-4">
         {/* Animated Heading */}
         <motion.h2

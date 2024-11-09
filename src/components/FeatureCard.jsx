@@ -4,7 +4,6 @@ import { useInView } from 'react-intersection-observer';
 import { Clock, TrendingUp, Wallet, Users, Truck, CheckSquare } from 'lucide-react';
 import backgroundImage from '../assets/figma images/and so much more.png'; // Add your background image here
 
-
 // Animation variants for cards and header
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.9 },
@@ -37,10 +36,16 @@ const FeatureCard = ({ icon: Icon, description, index }) => {
   return (
     <motion.div
       ref={ref}
-      className="bg-white p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 max-w-xs mx-auto"
+      className="bg-white p-6 rounded-lg transform transition duration-300 hover:scale-105 max-w-xs mx-auto"
+      style={{
+        boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)', // Custom shadow with dark bluish tone
+      }}
       initial="hidden"
       animate={controls}
-      variants={{ ...cardVariants, visible: { ...cardVariants.visible, transition: { ...cardVariants.visible.transition, delay: index * 0.15 } } }}
+      variants={{
+        ...cardVariants,
+        visible: { ...cardVariants.visible, transition: { ...cardVariants.visible.transition, delay: index * 0.15 } },
+      }}
     >
       <Icon className="text-teal-800 mb-4" size={40} />
       <h3 className="text-lg font-semibold text-teal-700 mb-2">{description}</h3>
@@ -85,14 +90,15 @@ const FeaturesGrid = () => {
   ];
 
   return (
-<div
-      className="bg-gradient-to-b from-blue-50/90 to-blue-50/70  w-full flex justify-center items-center overflow-x-hidden py-8"
+    <div
+      className="bg-gradient-to-b from-blue-50/90 to-blue-50/70 w-full flex justify-center items-center overflow-x-hidden py-8"
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
-    >       <div className="py-12 z-[1] w-full max-w-7xl">
+    >
+      <div className="py-12 z-[1] w-full max-w-7xl">
         {/* Header with Animation */}
         <motion.h2
           ref={headerRef}

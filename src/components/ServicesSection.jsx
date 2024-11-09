@@ -146,7 +146,7 @@ const WhyChooseKifayti = () => {
   }, [headerControls, headerInView]);
 
   return (
-    <div className="bg-cover  bg-center min-h-screen w-full flex justify-center items-center">
+    <div className="bg-cover bg-center min-h-screen w-full flex justify-center items-center">
       <div className="py-12 z-[1] w-full max-w-7xl">
         {/* Header with Animation */}
         <motion.h2
@@ -163,7 +163,10 @@ const WhyChooseKifayti = () => {
           {/* First Column: First Card Only */}
           <motion.div
             ref={ref1}
-            className="bg-white p-6 rounded-lg shadow-md flex flex-col text-left max-w-md mx-auto lg:max-w-full"
+            className="bg-white p-6 rounded-lg flex flex-col text-left max-w-md mx-auto lg:max-w-full"
+            style={{
+              boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)', // Custom shadow with dark bluish tone
+            }}
             initial="hidden"
             animate={controls1}
             variants={cardVariants}
@@ -190,7 +193,10 @@ const WhyChooseKifayti = () => {
             {/* Second Card */}
             <motion.div
               ref={ref2}
-              className="bg-white p-6 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-3 items-center max-w-md mx-auto lg:max-w-full"
+              className="bg-white p-6 rounded-lg grid grid-cols-1 md:grid-cols-3 items-center max-w-md mx-auto lg:max-w-full"
+              style={{
+                boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)', // Custom shadow with dark bluish tone
+              }}
               initial="hidden"
               animate={controls2}
               variants={cardVariants}
@@ -219,7 +225,10 @@ const WhyChooseKifayti = () => {
             {/* Third Card */}
             <motion.div
               ref={ref3}
-              className="bg-white p-6 rounded-lg shadow-md text-center max-w-md mx-auto lg:max-w-full"
+              className="bg-white p-6 rounded-lg text-center max-w-md mx-auto lg:max-w-full"
+              style={{
+                boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)', // Custom shadow with dark bluish tone
+              }}
               initial="hidden"
               animate={controls3}
               variants={cardVariants}
@@ -253,4 +262,5 @@ const WhyChooseKifayti = () => {
 };
 
 export default WhyChooseKifayti;
+
 

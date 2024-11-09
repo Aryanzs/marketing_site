@@ -109,6 +109,8 @@ const WhyChooseKifayti = () => {
           <motion.div
             ref={ref1}
             className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col text-left group hover:-translate-y-1 active:scale-[0.99]"
+            style={{ boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)' }}
+
             initial="hidden"
             animate={controls1}
             variants={cardVariants}
@@ -138,6 +140,8 @@ const WhyChooseKifayti = () => {
             <motion.div
               ref={ref2}
               className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row items-center md:items-start gap-6 group hover:-translate-y-1 active:scale-[0.99]"
+              style={{ boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)' }}
+
               initial="hidden"
               animate={controls2}
               variants={cardVariants}
@@ -163,6 +167,8 @@ const WhyChooseKifayti = () => {
             <motion.div
               ref={ref3}
               className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 active:scale-[0.99]"
+              style={{ boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)' }}
+
               initial="hidden"
               animate={controls3}
               variants={cardVariants}
@@ -190,6 +196,8 @@ const WhyChooseKifayti = () => {
           <motion.div
             ref={ref4}
             className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1 active:scale-[0.99]"
+            style={{ boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)' }}
+
             initial="hidden"
             animate={controls4}
             variants={cardVariants}
@@ -216,6 +224,8 @@ const WhyChooseKifayti = () => {
           <motion.div
             ref={ref5}
             className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col group hover:-translate-y-1 active:scale-[0.99]"
+            style={{ boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)' }}
+
             initial="hidden"
             animate={controls5}
             variants={cardVariants}
