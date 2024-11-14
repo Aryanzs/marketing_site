@@ -121,9 +121,9 @@ const CommunitySupport = () => {
   };
 
   return (
-    <div className=" h-full py-12 px-4 sm:px-6 lg:px-8">
+    <div className=" h-full py-12 px-4 sm:px-6 lg:px-8  rounded-xl">
       <motion.div
-        className="max-w-5xl bg-white mx-auto text-center"
+        className="max-w-5xl bg-white mx-auto text-center rounded-xl"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.3 }} // Animation reactivates when scrolled back
@@ -131,7 +131,7 @@ const CommunitySupport = () => {
       >
         {/* Text Section */}
         <motion.h1
-          className="text-4xl font-extrabold text-left px-8 py-4 text-teal-900 sm:text-5xl"
+          className="text-4xl font-extrabold text-left px-8 py-4 text-teal-900 sm:text-5xl rounded-xl"
           variants={textVariants}
         >
           Community Support
@@ -139,7 +139,7 @@ const CommunitySupport = () => {
           And Access To Counselling
         </motion.h1>
         <motion.p
-          className="mt-4 text-lg text-left px-8 text-teal-800"
+          className="mt-4 text-lg text-left px-8 text-teal-800 rounded-xl"
           variants={textVariants}
         >
           Our team of dedicated nephrologists, dietitians, social workers, and mental health
@@ -149,10 +149,10 @@ const CommunitySupport = () => {
 
         {/* Image Section */}
         <motion.div
-          className="mt-10 flex justify-center"
+          className="mt-10 flex justify-center rounded-xl"
           variants={imageVariants}
         >
-          <div className="relative">
+          <div className="relative rounded-xl overflow-hidden">
             <img
               src={communityImage}
               alt="Group of people"
@@ -166,4 +166,3 @@ const CommunitySupport = () => {
 };
 
 export default CommunitySupport;
-

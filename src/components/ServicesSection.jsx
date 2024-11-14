@@ -158,12 +158,12 @@ const WhyChooseKifayti = () => {
         >
           And So Much More
         </motion.h2>
-
+  
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* First Column: First Card Only */}
           <motion.div
             ref={ref1}
-            className="bg-white p-6 rounded-lg flex flex-col text-left max-w-md mx-auto lg:max-w-full"
+            className="bg-white p-6 rounded-xl flex flex-col text-left mx-auto max-w-xs md:max-w-md lg:max-w-full md:px-4"
             style={{
               boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)', // Custom shadow with dark bluish tone
             }}
@@ -187,13 +187,13 @@ const WhyChooseKifayti = () => {
               className="w-full h-[200px] md:h-[250px] flex-grow -mb-6"
             />
           </motion.div>
-
+  
           {/* Second Column: Second and Third Cards Stacked */}
           <div className="grid gap-6">
             {/* Second Card */}
             <motion.div
               ref={ref2}
-              className="bg-white p-6 rounded-lg grid grid-cols-1 md:grid-cols-3 items-center max-w-md mx-auto lg:max-w-full"
+              className="bg-white p-6 rounded-xl grid grid-cols-1 md:grid-cols-3 items-center mx-auto max-w-xs md:max-w-md lg:max-w-full md:px-4"
               style={{
                 boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)', // Custom shadow with dark bluish tone
               }}
@@ -211,7 +211,7 @@ const WhyChooseKifayti = () => {
                   to provide you with the most effective care possible.
                 </p>
               </div>
-
+  
               {/* Right Side: Image Part */}
               <div className="flex justify-center md:justify-end">
                 <img
@@ -221,11 +221,11 @@ const WhyChooseKifayti = () => {
                 />
               </div>
             </motion.div>
-
+  
             {/* Third Card */}
             <motion.div
               ref={ref3}
-              className="bg-white p-6 rounded-lg text-center max-w-md mx-auto lg:max-w-full"
+              className="bg-white p-6 rounded-xl text-center mx-auto max-w-xs md:max-w-md lg:max-w-full md:px-4"
               style={{
                 boxShadow: '0 10px 20px rgba(0, 76, 109, 0.3)', // Custom shadow with dark bluish tone
               }}
@@ -259,6 +259,8 @@ const WhyChooseKifayti = () => {
       </div>
     </div>
   );
+  
+  
 };
 
 export default WhyChooseKifayti;

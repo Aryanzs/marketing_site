@@ -28,7 +28,7 @@ const ContactInfo = () => {
 
   return (
     <motion.div 
-      className="bg-white py-16 -mt-20  "
+      className="bg-white py-16 -mt-20"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -57,17 +57,17 @@ const ContactInfo = () => {
           </motion.div>
           <motion.div className="w-full lg:w-1/2 space-y-8" variants={itemVariants}>
             <ContactItem
-              icon={<MapPin className="w-6 h-6 text-indigo-600" />}
+              icon={<MapPin className="w-6 h-6 text-[#FF4A2F]" />}
               title="Address"
               content="8/2, Beratan Agrahara Chikkabegur, Bangalore, Karnataka 560100"
             />
             <ContactItem
-              icon={<Phone className="w-6 h-6 text-indigo-600" />}
+              icon={<Phone className="w-6 h-6 text-[#FF4A2F]" />}
               title="Customer Support"
               content="+91 98840 40400"
             />
             <ContactItem
-              icon={<Mail className="w-6 h-6 text-indigo-600" />}
+              icon={<Mail className="w-6 h-6 text-[#FF4A2F]" />}
               title="Email Address"
               content="contactus@kifaytihealth.com"
             />
@@ -85,7 +85,7 @@ const ContactItem = ({ icon, title, content }) => (
     whileTap={{ scale: 0.95 }}
   >
     <div className="flex-shrink-0">
-      <div className="bg-indigo-100 rounded-full p-3">
+      <div className="rounded-full p-3 bg-[#FF4A2F1A] shadow-md border border-[#FF4A2F]   hover:shadow-[0px_0px_15px_#FF4A2F] transition duration-300 ease-in-out transform hover:scale-110">
         {icon}
       </div>
     </div>

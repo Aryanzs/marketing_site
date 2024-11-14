@@ -19,8 +19,8 @@ const SupportAndEducation = () => {
               informed and engaged in health management.
             </p>
             {/* Responsive Button */}
-            <button className="bg-red-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-teal-700 w-full md:w-auto lg:w-full xl:w-auto">
-              Request Callback &rarr;
+            <button className="bg-[#FF4A2F] text-white py-2 px-4 rounded-lg shadow-md hover:bg-teal-700 w-full md:w-auto lg:w-full xl:w-auto">
+            Request Callback &rarr;
             </button>
           </div>
         </div>

@@ -1,84 +1,83 @@
 import React from 'react';
 import insta from "../assets/figma images/Instagram.png";
 import fb from "../assets/figma images/Facebook.png";
-import bgimg from "../assets/figma images/Footer design.png";
 import kifayti from "../assets/figma images/kifaytifooterlogo 1.png";
+import styles from './Footer.module.css';
 
 function Footer() {
   return (
-    <footer
-      className="text-white py-10 px-4 md:px-8 bg-cover bg-center"
-      style={{ backgroundImage: `url(${bgimg})` }}
-    >
-      <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
-        
-        {/* Left Column */}
-        <div className="space-y-6 text-left">
-          {/* Logo and Heading */}
-          <div className="flex flex-col items-start md:flex-row md:items-start">
-            <img src={kifayti} alt="kifayti logo" className="w-12 h-12" />
-            <h2 className="text-3xl ml-0 md:ml-3 font-semibold mt-2">Kifayti Health</h2>
-          </div>
+    <footer className={`${styles.footer} text-white  py-10 px-4 md:px-8`}>
+      <div className="container mx-auto px-4 lg:px-8 xl:px-0 max-w-[1280px]">
+        <div className="flex flex-col md:flex-row md:justify-between md:space-x-8 lg:space-x-16">
           
-          {/* Address */}
-          <div>
-            <h3>ADDRESS</h3>
-            <p className="text-sm">8/2, Beratan Agrahara Chikkabegur, Bangalore, Karnataka 560100</p>
-          </div>
-          
-          {/* Customer Support */}
-          <div>
-            <h3>CUSTOMER SUPPORT</h3>
-            <p className="text-sm">+91 98840 40400</p>
-          </div>
-          
-          {/* For Enquiries */}
-          <div>
-            <h3>FOR ENQUIRIES</h3>
-            <p className="text-sm">contactus@kifaytihealth.com</p>
-          </div>
-        </div>
-
-        {/* Right Column */}
-        <div className="space-y-8 text-left md:text-right">
-          {/* Top Row: Company and Services */}
-          <div className="grid grid-cols-2 gap-8">
-            {/* Company Section */}
-            <div className="space-y-4">
-              <h3 className="font-bold">COMPANY</h3>
-              <ul className="space-y-2">
-                <li><a href="#about" className="hover:underline">About us</a></li>
-                <li><a href="#contact" className="hover:underline">Contact us</a></li>
-              </ul>
+          {/* Left Column */}
+          <div className="space-y-6 md:w-1/2 lg:w-5/12">
+            {/* Logo and Heading */}
+            <div className="flex flex-col items-start md:flex-row md:items-center space-y-2 md:space-y-0">
+              <img src={kifayti} alt="kifayti logo" className="w-12 h-12" />
+              <h2 className="text-3xl md:ml-3 font-semibold">Kifayti Health</h2>
             </div>
-
-            {/* Services Section */}
-            <div className="space-y-4">
-              <h3 className="font-bold">SERVICES</h3>
-              <ul className="space-y-2">
-                <li><a href="#patients" className="hover:underline">For Patients</a></li>
-                <li><a href="#doctors" className="hover:underline">For Doctors</a></li>
-                <li><a href="#institutions" className="hover:underline">For Institutions</a></li>
-              </ul>
+          
+            {/* Contact Information */}
+            <div className="space-y-6 mt-8">
+              <div>
+                <h3 className="font-bold mb-2">ADDRESS</h3>
+                <p className="text-sm max-w-md">8/2, Beratan Agrahara Chikkabegur, Bangalore, Karnataka 560100</p>
+              </div>
+              
+              <div>
+                <h3 className="font-bold mb-2">CUSTOMER SUPPORT</h3>
+                <p className="text-sm">+91 98840 40400</p>
+              </div>
+              
+              <div>
+                <h3 className="font-bold mb-2">FOR ENQUIRIES</h3>
+                <p className="text-sm">contactus@kifaytihealth.com</p>
+              </div>
             </div>
           </div>
 
-          {/* Middle Row: Social Media */}
-          <div>
-            <h3 className="font-bold">Follow us on Social Media</h3>
-            <div className="flex justify-start md:justify-end space-x-2 mt-2">
-              <a href="#facebook" className="p-2 rounded-full">
-                <img src={fb} alt="Facebook" className="w-8 h-8" />
-              </a>
-              <a href="#instagram" className="p-2 rounded-full">
-                <img src={insta} alt="Instagram" className="w-8 h-8" />
-              </a>
-            </div>
-          </div>
+          {/* Right Column */}
+          <div className="mt-8 md:mt-0 md:w-1/2 lg:w-4/12">
+            {/* Links Section */}
+            <div className="grid grid-cols-2 gap-8 mb-8">
+              {/* Company Section */}
+              <div>
+                <h3 className="font-bold mb-4">COMPANY</h3>
+                <ul className="space-y-3">
+                  <li><a href="#about" className="text-sm hover:underline">About us</a></li>
+                  <li><a href="#contact" className="text-sm hover:underline">Contact us</a></li>
+                </ul>
+              </div>
 
-          {/* Bottom Row: Copyright */}
-          <div className="text-xs">
-            <p>ALL RIGHTS RESERVED. COPYRIGHT OF KIFAYTI HEALTH PVT. LTD 2024.</p>
+              {/* Services Section */}
+              <div>
+                <h3 className="font-bold mb-4">SERVICES</h3>
+                <ul className="space-y-3">
+                  <li><a href="#patients" className="text-sm hover:underline">For Patients</a></li>
+                  <li><a href="#doctors" className="text-sm hover:underline">For Doctors</a></li>
+                  <li><a href="#institutions" className="text-sm hover:underline">For Institutions</a></li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Social Media */}
+            <div className="mb-8">
+              <h3 className="font-bold mb-4">Follow us on Social Media</h3>
+              <div className="flex space-x-4">
+                <a href="#facebook" className="hover:opacity-80">
+                  <img src={fb} alt="Facebook" className="w-8 h-8" />
+                </a>
+                <a href="#instagram" className="hover:opacity-80">
+                  <img src={insta} alt="Instagram" className="w-8 h-8" />
+                </a>
+              </div>
+            </div>
+
+            {/* Copyright */}
+            <div>
+              <p className="text-xs">ALL RIGHTS RESERVED. COPYRIGHT OF KIFAYTI HEALTH PVT. LTD 2024.</p>
+            </div>
           </div>
         </div>
       </div>
