@@ -3,7 +3,7 @@ import bookImage from "../assets/images/books.png"; // Ensure this path is corre
 
 const BlogSearchSection = () => {
   return (
-    <div className="flex flex-col lg:flex-row justify-between items-center bg-blue-50 px-4 md:px-8 lg:px-32 py-20 md:py-16 lg:py-36 rounded-lg max-w-full mx-auto space-x-32 gap-x-32">
+    <div className="flex flex-col lg:flex-row justify-between items-center bg-blue-50 px-4 md:px-8 lg:px-32 py-20 md:py-16 lg:py-36 rounded-lg max-w-full mx-auto  gap-x-32">
       {/* Text and Search Section */}
       <div className="flex flex-col items-center lg:items-start mb-8 lg:mb-0 lg:mr-8 text-center lg:text-left w-full lg:w-auto">
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
