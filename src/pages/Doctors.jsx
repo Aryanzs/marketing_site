@@ -2,14 +2,14 @@ import React from 'react'
 import FeaturesGrid from '../components/FeatureCard'
 import DoctorContact from '../components/DoctorContact'
 import Footer from '../components/Footer'
-import AnimatedComputerScreen from '../components/AnimatedComputerScreen'
 import VirtualCarePlatform from '../components/VirtualCarePlatform'
+import SequenceAnimation from './Animationtest'
 
 const Doctors = () => {
   return (
     <>
     <VirtualCarePlatform/>
-    <AnimatedComputerScreen/>
+    <SequenceAnimation/>
     <FeaturesGrid/>
     <DoctorContact/>
     <Footer/>
