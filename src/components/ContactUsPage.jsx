@@ -1,7 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios for API requests
 import phone from "../assets/figma images/phone call 1.png";
 
 const ContactUsPage = () => {
+  // State to manage form inputs
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+
+  // State to manage success or error messages
+  const [status, setStatus] = useState("");
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    try {
+      // Make a POST request to the backend
+      const response = await axios.post("http://localhost:5000/api/contact/submit", formData);
+
+      // Handle success response
+      setStatus({ type: "success", message: response.data.success });
+      setFormData({ firstName: "", lastName: "", email: "", message: "" }); // Clear the form
+    } catch (error) {
+      // Handle error response
+      setStatus({
+        type: "error",
+        message: error.response?.data?.error || "Something went wrong. Please try again.",
+      });
+    }
+  };
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-center py-16 md:py-20 px-6 md:px-10 bg-white min-h-screen">
       {/* Left Side: Form */}
@@ -12,7 +50,7 @@ const ContactUsPage = () => {
         <p className="text-gray-600 mb-8 text-center md:text-left leading-relaxed">
           Schedule a consultation or request more information about our services. Let's work together to manage CKD effectively and improve your quality of life.
         </p>
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="w-full">
               <label htmlFor="firstName" className="block text-gray-700 mb-2 font-semibold">
@@ -22,6 +60,8 @@ const ContactUsPage = () => {
                 type="text"
                 id="firstName"
                 placeholder="First name"
+                value={formData.firstName}
+                onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200"
               />
             </div>
@@ -33,6 +73,8 @@ const ContactUsPage = () => {
                 type="text"
                 id="lastName"
                 placeholder="Last name"
+                value={formData.lastName}
+                onChange={handleChange}
                 className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200"
               />
             </div>
@@ -45,6 +87,8 @@ const ContactUsPage = () => {
               type="email"
               id="email"
               placeholder="Email address"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200"
             />
           </div>
@@ -55,6 +99,8 @@ const ContactUsPage = () => {
             <textarea
               id="message"
               placeholder="Enter your question or message"
+              value={formData.message}
+              onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200"
               rows="4"
             />
@@ -66,6 +112,17 @@ const ContactUsPage = () => {
             SUBMIT
           </button>
         </form>
+
+        {/* Display status message */}
+        {status && (
+          <p
+            className={`mt-4 text-center font-semibold ${
+              status.type === "success" ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {status.message}
+          </p>
+        )}
       </div>
 
       {/* Right Side: Image with 3D Effect */}
