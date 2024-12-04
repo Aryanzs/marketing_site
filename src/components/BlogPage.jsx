@@ -1,47 +1,52 @@
-import React, { useRef, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import Blogpost from './Blogpost';
-
-const cardVariants = (direction) => {
-  return {
-    hidden: {
-      opacity: 0,
-      x: direction === 'left' ? -100 : direction === 'right' ? 100 : 0,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8, ease: 'easeInOut' },
-    },
-  };
-};
+// BlogPage.jsx
+import React, { useEffect, useState } from 'react';
+import BlogCard from './BlogCard';
 
 const BlogPage = () => {
-  const controlsLeft = useAnimation();
-  const controlsRight = useAnimation();
-  const leftColumnRef = useRef(null);
-  const rightColumnRef = useRef(null);
+  // State to hold blog posts and pagination
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 7;
+  const [loading, setLoading] = useState(true);
 
-  const observeElements = (ref, controls) => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          controls.start('visible');
-        } else {
-          controls.start('hidden');
-        }
-      },
-      { threshold: 0 }
+  // Fetch blog posts from backend
+  useEffect(() => {
+    fetch('http://localhost:5000/api/blogs')
+      .then((response) => response.json())
+      .then((data) => {
+        setBlogPosts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching blog posts:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Scroll to top when currentPage changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) =>
+      prevPage < totalPages ? prevPage + 1 : prevPage
     );
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
   };
 
-  useEffect(() => {
-    observeElements(leftColumnRef, controlsLeft);
-    observeElements(rightColumnRef, controlsRight);
-  }, [controlsLeft, controlsRight]);
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) =>
+      prevPage > 1 ? prevPage - 1 : prevPage
+    );
+  };
 
   return (
     <section className="bg-gray-50 py-20 px-4 md:px-16 max-w-full mx-auto">
@@ -49,86 +54,64 @@ const BlogPage = () => {
       <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl px-6 md:px-10 mb-10 text-center md:text-left">
         Blog Section
       </h1>
-      <Blogpost />
 
-      {/* Blog Post Columns */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 px-2 md:px-8 max-w-full md:max-w-[1310px] mx-auto">
-        {/* First Column */}
-        <div ref={leftColumnRef} className="flex flex-col gap-6">
-          <motion.div
-            className="border-2 border-teal-400 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
-            initial="hidden"
-            animate={controlsLeft}
-            variants={cardVariants('left')}
-          >
-            <div className="text-xs text-gray-500 mb-2 flex font-bold">
-              <img
-                src="https://via.placeholder.com/50"
-                alt="Icon"
-                className="w-8 h-8 mr-2"
-              />
-              News
-            </div>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
-              This Is The Title Of <br />The Article That’s Published
-            </h3>
-            <p className="text-sm text-gray-500 mt-4 mb-2">
-              20th June 2024, Name of organization
-            </p>
-          </motion.div>
+      {/* Loading Indicator */}
+      {loading ? (
+        <div className="text-center text-gray-500">Loading...</div>
+      ) : (
+        <>
+          {/* Blog Post Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 px-2 md:px-8 max-w-full md:max-w-[1310px] mx-auto">
+            {currentPosts.length > 0 ? (
+              currentPosts.map((post, index) => {
+                let direction;
+                if (index % 3 === 0) {
+                  direction = 'left';
+                } else if (index % 3 === 1) {
+                  direction = 'top';
+                } else {
+                  direction = 'right';
+                }
 
-          <motion.div
-            className="border-2 border-teal-400 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
-            initial="hidden"
-            animate={controlsLeft}
-            variants={cardVariants('left')}
-          >
-            <div className="text-xs text-gray-500 mb-2 flex font-bold">
-              <img
-                src="https://via.placeholder.com/50"
-                alt="Icon"
-                className="w-8 h-8 mr-2"
-              />
-              News
-            </div>
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
-              This Is The Title Of <br />The Article That’s Published
-            </h3>
-            <p className="text-sm text-gray-500 mt-4 mb-2">
-              20th June 2024, Name of organization
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Second Column */}
-        <motion.div
-          ref={rightColumnRef}
-          className="border-2 border-teal-400 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
-          initial="hidden"
-          animate={controlsRight}
-          variants={cardVariants('right')}
-        >
-          <div className="text-xs font-bold text-gray-500 mb-2 flex">
-            <img
-              src="https://via.placeholder.com/50"
-              alt="Icon"
-              className="w-8 h-8 mr-2"
-            />
-            Blog Post / Report
+                return (
+                  <BlogCard key={post._id} post={post} direction={direction} />
+                );
+              })
+            ) : (
+              <div className="col-span-full text-center text-gray-500">
+                No blogs on this page.
+              </div>
+            )}
           </div>
-          <img
-            className="w-full h-60 object-cover rounded-md mb-4"
-            src="https://via.placeholder.com/400"
-            alt="Article"
-          />
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">
-            This Is The Title Of <br />The Article That’s Published
-          </h3>
-          <p className="text-sm text-gray-500 mt-4">
-            20th June 2024, Name of organization
-          </p>
-        </motion.div>
-      </div>
+
+          {/* Pagination Controls */}
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 mx-2 bg-teal-500 text-white rounded ${
+                currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            >
+              Previous Page
+            </button>
+            <span className="px-4 py-2 mx-2 text-gray-700">
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              className={`px-4 py-2 mx-2 bg-teal-500 text-white rounded ${
+                currentPage === totalPages
+                  ? 'opacity-50 cursor-not-allowed'
+                  : ''
+              }`}
+            >
+              Next Page
+            </button>
+          </div>
+        </>
+      )}
     </section>
   );
 };
