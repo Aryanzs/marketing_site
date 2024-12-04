@@ -1,24 +1,25 @@
 // BlogPage.jsx
-import React, { useEffect, useState } from 'react';
-import BlogCard from './BlogCard';
+import React, { useEffect, useState } from "react";
+import BlogCard from "./BlogCard";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const BlogPage = () => {
   // State to hold blog posts and pagination
   const [blogPosts, setBlogPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 7;
+  const postsPerPage = 6;
   const [loading, setLoading] = useState(true);
 
   // Fetch blog posts from backend
   useEffect(() => {
-    fetch('http://localhost:5000/api/blogs')
+    fetch("http://localhost:5000/api/blogs")
       .then((response) => response.json())
       .then((data) => {
         setBlogPosts(data);
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching blog posts:', error);
+        console.error("Error fetching blog posts:", error);
         setLoading(false);
       });
   }, []);
@@ -33,7 +34,7 @@ const BlogPage = () => {
 
   // Scroll to top when currentPage changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
   const handleNextPage = () => {
@@ -43,9 +44,7 @@ const BlogPage = () => {
   };
 
   const handlePrevPage = () => {
-    setCurrentPage((prevPage) =>
-      prevPage > 1 ? prevPage - 1 : prevPage
-    );
+    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : prevPage));
   };
 
   return (
@@ -63,14 +62,15 @@ const BlogPage = () => {
           {/* Blog Post Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 px-2 md:px-8 max-w-full md:max-w-[1310px] mx-auto">
             {currentPosts.length > 0 ? (
-              currentPosts.map((post, index) => {
+              currentPosts.map((post) => {
+                // Decide direction based on some property of the post or randomly
                 let direction;
-                if (index % 3 === 0) {
-                  direction = 'left';
-                } else if (index % 3 === 1) {
-                  direction = 'top';
+                if (post.category === "News") {
+                  direction = "top";
+                } else if (post.category === "Report") {
+                  direction = "bottom";
                 } else {
-                  direction = 'right';
+                  direction = "left"; // Default direction
                 }
 
                 return (
@@ -85,29 +85,118 @@ const BlogPage = () => {
           </div>
 
           {/* Pagination Controls */}
-          <div className="flex justify-center mt-8">
+          <div className="flex justify-center items-center mt-8 space-x-4">
             <button
               onClick={handlePrevPage}
               disabled={currentPage === 1}
-              className={`px-4 py-2 mx-2 bg-teal-500 text-white rounded ${
-                currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+              className={`
+          relative 
+          flex items-center justify-center 
+          w-14 h-14 
+          border-2 
+          rounded-full 
+          overflow-hidden
+          transition-all 
+          duration-400 
+          ease-in-out
+          group
+          ${
+            currentPage === 1
+              ? "border-gray-300 text-gray-300 cursor-not-allowed"
+              : "border-teal-500 text-teal-500 hover:border-teal-600 hover:text-white"
+          }
+        `}
             >
-              Previous Page
+              {/* Gradient hover effect */}
+              <span
+                className={`
+            absolute 
+            inset-0 
+            bg-gradient-to-br 
+            from-teal-500 
+            to-teal-600 
+            transform 
+            scale-0 
+            group-hover:scale-150 
+            origin-center 
+            transition-transform 
+            duration-500 
+            ease-out
+            ${currentPage === 1 ? "hidden" : ""}
+          `}
+              ></span>
+
+              <ChevronLeft
+                size={28}
+                className={`
+            relative 
+            z-10 
+            transition-transform 
+            duration-300 
+            group-hover:scale-110
+            ${currentPage === 1 ? "opacity-50" : ""}
+          `}
+              />
             </button>
-            <span className="px-4 py-2 mx-2 text-gray-700">
-              Page {currentPage} of {totalPages}
-            </span>
+
+            <div className="flex items-center space-x-2">
+              <div className="bg-teal-100 rounded-full px-4 py-1">
+                <span className="text-teal-700 font-bold">{currentPage}</span>
+                <span className="text-gray-500 ml-1">/ {totalPages}</span>
+              </div>
+            </div>
+
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
-              className={`px-4 py-2 mx-2 bg-teal-500 text-white rounded ${
-                currentPage === totalPages
-                  ? 'opacity-50 cursor-not-allowed'
-                  : ''
-              }`}
+              className={`
+          relative 
+          flex items-center justify-center 
+          w-14 h-14 
+          border-2 
+          rounded-full 
+          overflow-hidden
+          transition-all 
+          duration-400 
+          ease-in-out
+          group
+          ${
+            currentPage === totalPages
+              ? "border-gray-300 text-gray-300 cursor-not-allowed"
+              : "border-teal-500 text-teal-500 hover:border-teal-600 hover:text-white"
+          }
+        `}
             >
-              Next Page
+              {/* Gradient hover effect */}
+              <span
+                className={`
+            absolute 
+            inset-0 
+            bg-gradient-to-br 
+            from-teal-500 
+            to-teal-600 
+            transform 
+            scale-0 
+            group-hover:scale-150 
+            origin-center 
+            transition-transform 
+            duration-500 
+            ease-out
+            ${currentPage === totalPages ? "hidden" : ""}
+          `}
+              ></span>
+
+              <ChevronRight
+                size={28}
+                className={`
+            relative 
+            z-10 
+            transition-transform 
+            duration-300 
+            group-hover:scale-110
+            ${currentPage === totalPages ? "opacity-50" : ""}
+          `}
+              />
             </button>
           </div>
         </>
