@@ -7,13 +7,14 @@ import ServicesSection from '../components/ServicesSection'
 import KidneyCareSection from '../components/KidneyCareSection'
 import ScrollableMobileSection from '../components/ScrollableMobileSection'
 import backgroundImage from '../assets/figma images/how.png';
+import MobileSequenceAnimation from './MobileSequenceAnimation'
 
 const Patients = () => {
   return (
     <>  
     
     <KidneyCareSection/>
-    <ScrollableMobileSection/>
+    <MobileSequenceAnimation/>
     <div
       className="bg-gradient-to-b from-blue-50/90 to-blue-50/70  w-full flex justify-center items-center overflow-x-hidden py-20"
       style={{

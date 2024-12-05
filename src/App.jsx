@@ -8,7 +8,7 @@ import Contact from './pages/Contact'; // Import the Contact page
 import Doctors from './pages/Doctors'; // Import the Doctors page
 import Patients from './pages/Patients'; // Import the Patients page
 import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component
-import Animationtest from './pages/Animationtest';
+import MobileSequenceAnimation from './pages/MobileSequenceAnimation';
 function App() {
   return (
     <Router>
@@ -22,7 +22,7 @@ function App() {
         <Route path="/contact" element={<Contact />} /> 
         <Route path="/doctors" element={<Doctors />} /> {/* Doctors Page */}
         <Route path="/patients" element={<Patients />} /> {/* Patients Page */}
-        <Route path="/animationtest" element={<Animationtest />} /> {/* Patients Page */}
+        <Route path="/animationtest" element={<MobileSequenceAnimation/>} /> {/* Patients Page */}
       </Routes>
     </Router>
   );
