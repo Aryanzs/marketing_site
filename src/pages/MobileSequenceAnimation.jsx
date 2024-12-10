@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// First Sequence Component
-const TreatmentAdherenceSequence = ({ isVisible, progress }) => {
+const TreatmentAdherenceSequence = ({ isVisible, progress  , scrollProgress}) => {
   const sequence = {
     text: {
       big: "Treatment Adherence",
@@ -18,7 +17,16 @@ const TreatmentAdherenceSequence = ({ isVisible, progress }) => {
       className="snap-center h-screen flex items-center justify-center w-full relative"
     >
       <div className="flex flex-col md:flex-row items-center justify-center w-full space-y-8 md:space-y-0 md:space-x-8">
-        <div className="w-1/2 md:w-1/3 lg:w-[30%] flex-shrink-0 max-w-xs">
+        <motion.div
+          className="w-1/2 md:w-1/3 lg:w-[30%] flex-shrink-0 max-w-xs relative"
+          style={{
+            position: "relative",
+          }}
+          animate={{
+            top: progress < 0 ? `15vw` : `${Math.min(progress * 5, 0)}vw`, // Smooth transition
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
           <div className="relative aspect-[9/19] mx-auto">
             <img
               src="/mobile frame.png"
@@ -26,18 +34,15 @@ const TreatmentAdherenceSequence = ({ isVisible, progress }) => {
               alt="Mobile frame"
             />
             <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <motion.img
+              <img
                 src={sequence.image}
                 alt="Treatment Adherence"
-                style={{
-                  transform: `scale(${1 + Math.abs(progress) * 0.1}) translateX(${progress * 50}px)`,
-                  opacity: 1 - Math.abs(progress)
-                }}
+               
                 className="object-contain w-[70%] md:w-[80%] mx-auto mt-8 md:mt-10 h-[85%] md:h-[90%]"
               />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="w-full md:w-2/3 lg:w-[70%] text-center md:text-left">
           <h2 className="text-2xl md:text-4xl mx-4 md:mx-10 mt-5 font-bold text-black">
@@ -57,6 +62,7 @@ const TreatmentAdherenceSequence = ({ isVisible, progress }) => {
   );
 };
 
+
 // Second Sequence Component
 const PatientMonitoringSequence = ({ isVisible, progress }) => {
   const sequence = {
@@ -74,13 +80,26 @@ const PatientMonitoringSequence = ({ isVisible, progress }) => {
       className="snap-center h-screen flex items-center justify-center w-full relative"
     >
       <div className="flex flex-col md:flex-row items-center justify-center w-full space-y-8 md:space-y-0 md:space-x-8">
-        <h2 className="text-2xl md:text-3xl mx-4 md:mx-10 mt-5 font-bold text-black">
+        <h2 className="text-2xl hidden md:block absolute left-0 max-w-[30%] -z-10 md:text-3xl mx-4 md:mx-10 mt-5 font-bold text-black">
           <span className={`block text-${sequence.text.color}`}>
             {sequence.text.big}
           </span>
         </h2>
         
         <div className="w-1/2 md:w-1/3 lg:w-[30%] flex-shrink-0 max-w-xs">
+        <motion.div
+          style={{
+            position: "relative",
+            right:0,
+            // left: `${progress * 50}vw`, // Adjust the position dynamically
+          }}
+          animate={{
+            top: progress < 0 ? `5vw` : `${Math.min(progress * 5, 90)}vw`, // Smooth transition
+            // opacity: progress > 100 ? `0` : `${Math.min(progress * 10, 90)}`, // Smooth transition
+            left: progress < 0 ? `25vw` : `${Math.min(progress * 10, 90)}vw`, // Smooth transition
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
           <div className="relative aspect-[9/19] mx-auto">
             <img
               src="/mobile frame.png"
@@ -88,22 +107,31 @@ const PatientMonitoringSequence = ({ isVisible, progress }) => {
               alt="Mobile frame"
             />
             <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <motion.img
+              <img
                 src={sequence.image}
                 alt="Patient Monitoring"
-                style={{
-                  transform: `scale(${1 + Math.abs(progress) * 0.1}) translateX(${progress * 50}px)`,
-                  opacity: 1 - Math.abs(progress)
-                }}
+               
                 className="object-contain w-[70%] md:w-[80%] mx-auto mt-8 md:mt-10 h-[85%] md:h-[90%]"
               />
             </div>
           </div>
+          </motion.div>
         </div>
         
-        <div>
-          <h2 className="text-2xl md:text-4xl mx-4 md:mx-10 mt-5 font-bold text-black">
-            <span className="text-xs md:text-sm block mt-4 text-left font-normal text-gray-600 leading-tight">
+        <div className=" md:ml-40" >
+          <h2 className="text-2xl md:text-4xl mx-4 md:mx-10 mt-5 font-bold text-gray-400 md:text-white">
+          <span className={`block md:hidden max-w-[70%] text-${sequence.text.color}`}>
+            {sequence.text.big}
+          </span>
+            <span className="text-xs md:text-sm block mt-4 text-left font-normal text-gray-400 md:text-white leading-tight">
+              {sequence.text.small}
+              {sequence.text.line3}
+            </span>
+          </h2>
+        </div>
+        <div className="hidden md:block absolute -right-20 max-w-[40%] ml-40" >
+          <h2 className="text-2xl md:text-4xl mx-4 md:mx-10 mt-5 font-bold text-white">
+            <span className="text-xs md:text-sm block mt-4 text-left font-normal text-gray-400 leading-tight">
               {sequence.text.small}
               {sequence.text.line3}
             </span>
@@ -131,7 +159,7 @@ const DiseaseProgressionSequence = ({ isVisible, progress }) => {
       className="snap-center h-screen flex items-center justify-center w-full relative"
     >
       <div className="flex flex-col md:flex-row items-center justify-center w-full space-y-8 md:space-y-0 md:space-x-8">
-        <div className="w-full hidden md:block md:w-2/3 lg:w-[70%] text-center md:text-left order-1 md:order-none">
+        <div className="w-full absolute left-0 hidden md:block md:w-2/3 lg:w-[70%] text-center md:text-left order-1 md:order-none">
           <h2 className="text-2xl md:text-4xl mx-4 md:mx-10 mt-5 font-bold text-black">
             <span className={`block text-${sequence.text.color}`}>
               {sequence.text.big}
@@ -146,6 +174,18 @@ const DiseaseProgressionSequence = ({ isVisible, progress }) => {
         </div>
 
         <div className="w-1/2 md:w-1/3 lg:w-[30%] flex-shrink-0 max-w-xs order-2 md:order-none">
+        <motion.div
+          style={{
+            position: "relative",
+            left: `${progress * 50}vw`, // Adjust the position dynamically
+          }}
+          animate={{
+            bottom: progress < 0 ? `2vw` : `${Math.min(progress * 5, 10)}vw`, // Smooth transition
+
+            left: progress < 0 ? `30vw` : `${Math.min(progress * 10, 90)}vw`, // Smooth transition
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
           <div className="relative aspect-[9/19] mx-auto">
             <img
               src="/mobile frame.png"
@@ -153,23 +193,27 @@ const DiseaseProgressionSequence = ({ isVisible, progress }) => {
               alt="Mobile frame"
             />
             <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <motion.img
+              <img
                 src={sequence.image}
                 alt="Disease Progression"
-                style={{
-                  transform: `scale(${1 + Math.abs(progress) * 0.1}) translateX(${progress * 50}px)`,
-                  opacity: 1 - Math.abs(progress)
-                }}
+               
                 className="object-contain w-[70%] md:w-[80%] mx-auto mt-8 md:mt-10 h-[85%] md:h-[90%]"
               />
             </div>
           </div>
+          </motion.div>
         </div>
         
         <div className="w-full block md:hidden md:w-2/3 lg:w-[70%] text-center md:text-left order-1 md:order-none">
           <h2 className="text-2xl md:text-4xl mx-4 md:mx-10 mt-5 font-bold text-black">
             <span className={`block text-${sequence.text.color}`}>
               {sequence.text.big}
+            </span>
+            <span className="text-xs md:text-sm block mt-4 text-center font-normal text-gray-600 leading-tight">
+              {sequence.text.small}
+            </span>
+            <span className="text-xs md:text-sm block my-1 text-center font-normal text-gray-600 leading-tight">
+              {sequence.text.line3}
             </span>
           </h2>
         </div>
@@ -185,6 +229,17 @@ const MobileSequenceAnimation = () => {
   const sectionRefs = useRef([]);
   const containerRef = useRef(null);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const progress = (scrolled / maxScroll) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const sequences = [
     TreatmentAdherenceSequence,
     PatientMonitoringSequence,
@@ -234,7 +289,7 @@ const MobileSequenceAnimation = () => {
   return (
     <div 
       ref={containerRef}
-      className="scroll-container snap-y snap-mandatory h-screen overflow-y-scroll"
+      className="scroll-container overflow-x-hidden snap-y snap-mandatory h-screen overflow-y-scroll"
     >
       {/* Header section */}
       <div className="md:flex md:ml-10 ml-5 md:mb-5 justify-between snap-start">
@@ -280,6 +335,7 @@ const MobileSequenceAnimation = () => {
             ref={(el) => sectionRefs.current[index] = el}
           >
             <SequenceComponent 
+            scrollProgress={scrollProgress}
               isVisible={currentIndex === index} 
               progress={currentIndex === index ? scrollProgress : 0}
             />
