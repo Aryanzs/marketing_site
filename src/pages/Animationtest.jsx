@@ -1,318 +1,230 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState, useRef } from "react";
 
-const SequenceAnimation = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const scrollRef = useRef(null);
+const AnimationTest = () => {
+  const [progress, setProgress] = useState(0);
+  const [targetProgress, setTargetProgress] = useState(0);
   const isScrolling = useRef(false);
-  const scrollAccumulator = useRef(0);
-  const lastScrollTime = useRef(Date.now());
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
+  const scrollTimeout = useRef(null);
+  const animationFrame = useRef(null);
+  
   const sequences = [
     {
       text: {
         line1: "Take advantage of",
         line2: "real-world insights & evidence",
-        color: "red-500",
+        color: "red-500"
       },
-      image: "/1st.png",
+      image: "/1st.png"
     },
     {
       text: {
-        line1: "Take advantage of",
-        line2: "real-world insights & evidence",
-        color: "red-500",
+        line1: "Harness actionable data for",
+        line2: "proactive healthcare management",
+        color: "red-500"
       },
-      image: "/2n.png",
+      image: "/2n.png"
     },
     {
       text: {
-        line1: "Real-time escalation pathways and",
+        line1: "Real-time escalation pathways and ",
         line2: "alert messages for enhanced decision making",
-        color: "red-500",
+        color: "red-500"
       },
-      image: "/3rd.png",
+      image: "/3rd.png"
     },
     {
       text: {
-        line1: "Enable personalized, just-in-time",
+        line1: "enable personalized, just-in-time ",
         line2: "interventions",
-        color: "red-500",
+        color: "red-500"
       },
-      image: "/4th.png",
+      image: "/4th.png"
     },
     {
       text: {
-        line1: "Secure, important conversations between patients and",
-        line2: "healthcare teams all in one place",
-        color: "red-500",
+        line1: "Secure, important conversations between patients and ",
+        line2: "healthcare care teams all at one place.",
+        color: "red-500"
       },
-      image: "/5th.png",
+      image: "/5th.png"
     },
     {
       text: {
-        line1: "Enhanced decision making powered by",
+        line1: "enhanced decision making powered by ",
         line2: "AI/ML & analytics",
-        color: "red-500",
+        color: "red-500"
       },
-      image: "/6th.png",
-    },
+      image: "/6th.png"
+    }
   ];
 
-  useEffect(() => {
-    const SCROLL_THRESHOLD = 100;
-    const SCROLL_TIMEOUT = 200;
-    const ANIMATION_COOLDOWN = 1000;
+  const totalSections = sequences.length - 1;
+  const sectionSize = 1 / totalSections;
 
+  // Smooth animation to target progress with slower speed
+  const animateToTarget = () => {
+    if (Math.abs(targetProgress - progress) < 0.001) {
+      setProgress(targetProgress);
+      animationFrame.current = null;
+      return;
+    }
+
+    // Reduced animation speed by lowering this multiplier
+    const newProgress = progress + (targetProgress - progress) * 0.05;
+    setProgress(newProgress);
+    animationFrame.current = requestAnimationFrame(animateToTarget);
+  };
+
+  useEffect(() => {
     const handleWheel = (e) => {
       e.preventDefault();
-
-      const currentTime = Date.now();
-      const timeSinceLastScroll = currentTime - lastScrollTime.current;
-
-      if (timeSinceLastScroll > SCROLL_TIMEOUT) {
-        scrollAccumulator.current = 0;
+      
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
       }
 
-      scrollAccumulator.current += Math.abs(e.deltaY);
-      lastScrollTime.current = currentTime;
+      isScrolling.current = true;
+      
+      // Reduce scroll sensitivity
+      const delta = (Math.sign(e.deltaY) * sectionSize) * 0.5;
+      const currentSection = Math.round(progress / sectionSize);
+      const newTarget = Math.max(0, Math.min(1, (currentSection * sectionSize) + delta));
+      
+      setTargetProgress(newTarget);
 
-      if (scrollAccumulator.current > SCROLL_THRESHOLD && !isScrolling.current) {
-        const newDirection = e.deltaY > 0 ? 1 : -1;
-        const nextIndex = currentIndex + newDirection;
-
-        if (nextIndex >= 0 && nextIndex < sequences.length) {
-          isScrolling.current = true;
-          setDirection(newDirection);
-          setCurrentIndex(nextIndex);
-          scrollAccumulator.current = 0;
-
-          setTimeout(() => {
-            isScrolling.current = false;
-          }, ANIMATION_COOLDOWN);
-        }
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
       }
+      animationFrame.current = requestAnimationFrame(animateToTarget);
+
+      // Increased timeout for smoother transitions
+      scrollTimeout.current = setTimeout(() => {
+        isScrolling.current = false;
+      }, 300);
     };
 
+    // Add touch support for mobile
     const handleTouchStart = (e) => {
-      touchStartX.current = e.touches[0].clientX;
+      e.preventDefault();
     };
 
     const handleTouchMove = (e) => {
-      touchEndX.current = e.touches[0].clientX;
-    };
+      e.preventDefault();
+      const touch = e.touches[0];
+      const delta = touch.clientY - window.innerHeight / 2;
+      
+      const currentSection = Math.round(progress / sectionSize);
+      const newTarget = Math.max(0, Math.min(1, (currentSection * sectionSize) + (delta / window.innerHeight * sectionSize)));
+      
+      setTargetProgress(newTarget);
 
-    const handleTouchEnd = () => {
-      const deltaX = touchStartX.current - touchEndX.current;
-
-      if (Math.abs(deltaX) > 50 && !isScrolling.current) {
-        const newDirection = deltaX > 0 ? 1 : -1; // Swipe left is next, swipe right is previous
-        const nextIndex = currentIndex + newDirection;
-
-        if (nextIndex >= 0 && nextIndex < sequences.length) {
-          isScrolling.current = true;
-          setDirection(newDirection);
-          setCurrentIndex(nextIndex);
-
-          setTimeout(() => {
-            isScrolling.current = false;
-          }, ANIMATION_COOLDOWN);
-        }
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
       }
+      animationFrame.current = requestAnimationFrame(animateToTarget);
     };
 
-    const element = scrollRef.current;
-    if (element) {
-      element.addEventListener("wheel", handleWheel, { passive: false });
-      element.addEventListener("touchstart", handleTouchStart, { passive: false });
-      element.addEventListener("touchmove", handleTouchMove, { passive: false });
-      element.addEventListener("touchend", handleTouchEnd, { passive: false });
-    }
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
     return () => {
-      if (element) {
-        element.removeEventListener("wheel", handleWheel);
-        element.removeEventListener("touchstart", handleTouchStart);
-        element.removeEventListener("touchmove", handleTouchMove);
-        element.removeEventListener("touchend", handleTouchEnd);
+      document.body.style.overflow = 'auto';
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
       }
     };
-  }, [currentIndex, sequences.length]);
+  }, [progress, targetProgress]);
 
-  const handleNavClick = (index) => {
-    if (!isScrolling.current && index !== currentIndex) {
-      isScrolling.current = true;
-      setDirection(index > currentIndex ? 1 : -1);
-      setCurrentIndex(index);
+  const getElementStyles = (index) => {
+    const elementProgress = (progress * totalSections) - index;
+    const visibility = Math.max(0, Math.min(1, 1 - Math.abs(elementProgress)));
+    
+    let translateY = 0;
+    let translateX = 0;
+    let scale = 1;
+    let opacity = visibility;
 
-      setTimeout(() => {
-        isScrolling.current = false;
-      }, 1000);
+    if (elementProgress > 0) {
+      translateX = elementProgress * 100;
+      scale = 1 - elementProgress * 0.05;
+    } else if (elementProgress < 0) {
+      translateY = Math.abs(elementProgress) * 100;
+      scale = 0.95 + visibility * 0.05;
     }
-  };
 
-  const imageVariants = {
-    enter: (direction) => ({
-      y: direction > 0 ? 100 : -100,
-      opacity: 0,
-      scale: 0.95,
-    }),
-    center: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        y: { type: "spring", stiffness: 100, damping: 20, duration: 0.8 },
-        opacity: { duration: 0.5 },
-        scale: { duration: 0.5 },
-      },
-    },
-    exit: (direction) => ({
-      y: direction > 0 ? -100 : 100,
-      opacity: 0,
-      scale: 0.95,
-      transition: {
-        y: { type: "spring", stiffness: 100, damping: 20, duration: 0.8 },
-        opacity: { duration: 0.5 },
-        scale: { duration: 0.5 },
-      },
-    }),
-  };
-
-  const textVariants = {
-    enter: (direction) => ({
-      y: direction > 0 ? 50 : -50,
-      opacity: 0,
-    }),
-    center: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        y: { type: "spring", stiffness: 100, damping: 20, duration: 0.8 },
-        opacity: { duration: 0.7, delay: 0.2 },
-      },
-    },
-    exit: (direction) => ({
-      y: direction > 0 ? -50 : 50,
-      opacity: 0,
-      transition: {
-        y: { type: "spring", stiffness: 100, damping: 20, duration: 0.8 },
-        opacity: { duration: 0.5 },
-      },
-    }),
+    return {
+      transform: `translate(${translateX}%, ${translateY}%) scale(${scale})`,
+      opacity: opacity,
+      // Increased transition duration for smoother animations
+      transition: isScrolling.current 
+        ? 'transform 0.3s ease-out, opacity 0.3s ease-out'
+        : 'transform 0.8s ease-out, opacity 0.8s ease-out'
+    };
   };
 
   return (
-    <div
-      ref={scrollRef}
-      className="relative flex items-center justify-center bg-white overflow-hidden mt-16 mb-16 md:mt-24 md:mb-24 px-4"
-    >
-      {/* Right side navigation */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20 hidden md:flex">
-        {sequences.map((_, index) => (
-          <motion.button
-            key={index}
-            onClick={() => handleNavClick(index)}
-            className="group relative flex items-center"
-            whileHover="hover"
-          >
-            <motion.div
-              className={`w-2 h-8 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? "bg-red-500"
-                  : "bg-gray-300 group-hover:bg-gray-400"
-              }`}
-            />
-            <motion.span
-              className="absolute left-6 text-sm text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap"
-              initial={{ opacity: 0, x: -10 }}
-              variants={{
-                hover: { opacity: 1, x: 0 },
-              }}
-            >
-              {`Section ${index + 1}`}
-            </motion.span>
-          </motion.button>
-        ))}
-      </div>
-
-      <div className="relative max-w-[90%] w-full md:w-[1200px] mx-auto">
-        <div className="flex gap-8 md:gap-12 items-center flex-col md:flex-row">
+    <div className="relative w-full h-[90vh] py-12 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-8">
           {/* Left side - Images */}
-          <div className="relative w-full md:w-1/2 aspect-[1.11]">
-            <img
-              src="/desktopframe.png"
-              className="absolute inset-0 rounded-lg object-contain z-10 w-full h-full"
+          <div className="relative w-full md:w-1/2 aspect-[1.11] mb-4 md:mb-0">
+            <img 
+              src="/desktopframe.png" 
+              className="absolute inset-0 rounded-lg object-contain w-full h-full"
               alt="Desktop frame"
             />
-            <div className="absolute inset-0 -mt-12 sm:-mt-16 md:-mt-20 lg:-mt-24 rounded-lg p-2 sm:p-4">
-              <AnimatePresence initial={false} mode="wait" custom={direction}>
-                <motion.div
-                  key={currentIndex}
-                  custom={direction}
-                  variants={imageVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="absolute inset-0"
-                >
-                  <img
-                    src={sequences[currentIndex].image}
-                    alt={`Sequence ${currentIndex + 1}`}
-                    className="object-contain w-full h-full"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
+            {sequences.map((seq, index) => (
+              <div
+                key={`image-${index}`}
+                className="absolute inset-0 rounded-lg p-2 md:p-4"
+                style={{
+                  ...getElementStyles(index),
+                  marginTop: '-2rem' // Adjusted for mobile
+                }}
+              >
+                <img
+                  src={seq.image}
+                  alt={`Sequence ${index + 1}`}
+                  className={`object-contain w-full h-full ${index === 0 ? 'scale-90' : ''}`}
+                />
+              </div>
+            ))}
           </div>
 
           {/* Right side - Text */}
-          <div className="relative w-full md:w-[45%] min-h-[200px] flex items-center">
-            <AnimatePresence initial={false} mode="wait" custom={direction}>
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={textVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="w-full"
+          <div className="relative w-full md:w-[45%] h-[250px] md:h-[400px]">
+            {sequences.map((seq, index) => (
+              <div
+                key={`text-${index}`}
+                className="absolute top-1/2 -translate-y-1/2 w-full"
+                style={{
+                  ...getElementStyles(index),
+                  // Adjusted text positioning for mobile
+                  width: index === 0 ? '150%' : '100%',
+                  left: index === 0 ? '-25%' : '0'
+                }}
               >
-                <div className="space-y-4 text-center md:text-left">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
-                    <span className="font-semibold block mb-2">
-                      {sequences[currentIndex].text.line1}
-                    </span>
-                    <span
-                      className={`font-semibold text-${sequences[currentIndex].text.color}`}
-                    >
-                      {sequences[currentIndex].text.line2}
-                    </span>
-                  </h2>
+                <div className="text-xl md:text-5xl font-bold text-black text-center md:text-left">
+                  <span className="font-semibold block">{seq.text.line1}</span>
+                  <span className={`font-semibold text-${seq.text.color} block`}>
+                    {seq.text.line2}
+                  </span>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+            ))}
           </div>
-        </div>
-
-        {/* Bottom navigation for mobile */}
-        <div className="flex md:hidden justify-center mt-8 gap-2">
-          {sequences.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handleNavClick(index)}
-              className={`w-2 h-2 rounded-full ${
-                index === currentIndex ? "bg-red-500" : "bg-gray-300"
-              }`}
-            />
-          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default SequenceAnimation;
+export default AnimationTest;
