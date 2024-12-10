@@ -9,7 +9,7 @@ dotenv.config();
 // Import Routes
 import contactRoutes from "./routes/contactRoutes.js"; // Added .js extension
 import blogRoutes from './routes/blogRoutes.js';       // Added .js extension
-
+import adminRoutes from './routes/adminRoutes.js'
 const app = express();
 const PORT = process.env.PORT;
 
@@ -23,6 +23,7 @@ app.use(cors());
 // Routes
 app.use("/api/contact", contactRoutes);
 app.use('/api/blogs', blogRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Start Server
 app.listen(PORT, () => {
