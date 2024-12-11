@@ -1,0 +1,35 @@
+import multer from 'multer';
+import path from 'path';
+
+// Set up storage configuration for multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Folder to save uploaded files
+  },
+  filename: (req, file, cb) => {
+    const uniqueName = `${Date.now()}-${file.originalname}`;
+    cb(null, uniqueName); // File name with timestamp for uniqueness
+  },
+});
+
+// Filter to ensure only image files are uploaded
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = /jpeg|jpg|png|gif/; // Allowed extensions
+  const extname = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
+  const mimetype = allowedFileTypes.test(file.mimetype);
+
+  if (extname && mimetype) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only image files are allowed!'), false);
+  }
+};
+
+// Initialize multer with the storage and file filter
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 4 * 1024 * 1024 }, // Max file size: 4MB
+});
+
+export default upload;

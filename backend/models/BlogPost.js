@@ -15,6 +15,8 @@ const blogPostSchema = new Schema(
     },
     date: { type: Date, default: Date.now },
     imageUrl: { type: String },
+    uploadedImagePath: { type: String }, // For locally uploaded images
+
   },
   { timestamps: true }
 );

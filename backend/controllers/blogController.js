@@ -1,4 +1,4 @@
-// controllers/blogController.js
+//// controllers/blogController.js
 import BlogPost from '../models/BlogPost.js';
 
 // @desc    Get all blog posts
@@ -32,15 +32,24 @@ export async function getPostById(req, res) {
 // @route   POST /api/blogs
 // @access  Private
 export async function createPost(req, res) {
-  const { title, content, author, category, imageUrl } = req.body;
   try {
+    const { title, content, author, category, imageUrl } = req.body;
+    const uploadedImagePath = req.file ? `/uploads/${req.file.filename}` : null;
+
+    // Ensure at least one image source is provided
+    if (!uploadedImagePath && !imageUrl) {
+      return res.status(400).json({ message: 'An image file or image URL is required' });
+    }
+
     const newPost = new BlogPost({
       title,
       content,
       author,
       category,
-      imageUrl,
+      uploadedImagePath, // Primary if present
+      imageUrl: !uploadedImagePath ? imageUrl : null, // Fallback
     });
+
     const post = await newPost.save();
     res.status(201).json(post);
   } catch (error) {
@@ -53,17 +62,26 @@ export async function createPost(req, res) {
 // @route   PUT /api/blogs/:id
 // @access  Private
 export async function updatePost(req, res) {
-  const { title, content, author, category, imageUrl } = req.body;
   try {
-    let post = await BlogPost.findById(req.params.id);
+    const { title, content, author, category, imageUrl } = req.body;
+
+    const post = await BlogPost.findById(req.params.id);
     if (!post) return res.status(404).json({ message: 'Post not found' });
+
+    const uploadedImagePath = req.file ? `/uploads/${req.file.filename}` : post.uploadedImagePath;
+
+    // Ensure at least one image source is present
+    if (!uploadedImagePath && !imageUrl && !post.uploadedImagePath && !post.imageUrl) {
+      return res.status(400).json({ message: 'An image file or image URL is required' });
+    }
 
     // Update fields
     post.title = title || post.title;
     post.content = content || post.content;
     post.author = author || post.author;
     post.category = category || post.category;
-    post.imageUrl = imageUrl || post.imageUrl;
+    post.uploadedImagePath = uploadedImagePath; // Priority for uploaded file
+    post.imageUrl = uploadedImagePath ? null : (imageUrl || post.imageUrl); // Fallback to URL
 
     await post.save();
     res.status(200).json(post);

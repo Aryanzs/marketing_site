@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 import connectDB from './config/db.js'; // Added .js extension
 
 dotenv.config();
@@ -19,6 +20,10 @@ connectDB();
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
+
+// Serve Static Files for Uploaded Images
+const __dirname = path.resolve(); // Get the current directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use("/api/contact", contactRoutes);

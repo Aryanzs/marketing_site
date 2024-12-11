@@ -1,4 +1,3 @@
-// BlogCard.jsx
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -33,6 +32,11 @@ const BlogCard = ({ post, direction }) => {
     },
   };
 
+  // Determine the final image source
+  const imageSrc = post.uploadedImagePath
+    ? `http://localhost:5000${post.uploadedImagePath}`
+    : post.imageUrl;
+
   // Decide layout based on the 'direction' prop
   let cardLayout;
   if (direction === 'left' || direction === 'right') {
@@ -46,20 +50,22 @@ const BlogCard = ({ post, direction }) => {
         variants={cardVariants}
       >
         <div className="text-xs font-bold text-gray-500 mb-2 flex">
-          {post.imageUrl && (
+          {imageSrc && (
             <img
-              src={post.imageUrl}
+              src={imageSrc}
               alt="Icon"
               className="w-8 h-8 mr-2"
             />
           )}
           {post.category}
         </div>
-        {post.imageUrl && (
+        {imageSrc && (
           <img
-            className="w-full h-60 object-cover rounded-md mb-4"
-            src={post.imageUrl}
-            alt="Article"
+          className="w-full h-60  rounded-md mb-4 object-contain"
+          src={imageSrc}
+          alt="Article"
+          style={{ aspectRatio: '16/9' }} // Ensures consistent aspect ratio
+      
           />
         )}
         <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
@@ -81,20 +87,22 @@ const BlogCard = ({ post, direction }) => {
         variants={cardVariants}
       >
         <div className="text-xs font-bold text-gray-500 mb-2 flex">
-          {post.imageUrl && (
+          {imageSrc && (
             <img
-              src={post.imageUrl}
+              src={imageSrc}
               alt="Icon"
               className="w-8 h-8 mr-2"
             />
           )}
           {post.category}
         </div>
-        {post.imageUrl && (
+        {imageSrc && (
           <img
-            className="w-full h-60 object-cover rounded-md mb-4"
-            src={post.imageUrl}
-            alt="Article"
+          className="w-full h-60  rounded-md mb-4 object-contain"
+          src={imageSrc}
+          alt="Article"
+          style={{ aspectRatio: '16/9' }} // Ensures consistent aspect ratio
+      
           />
         )}
         <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
@@ -106,7 +114,7 @@ const BlogCard = ({ post, direction }) => {
       </motion.div>
     );
   } else {
-    // Default layout (you can customize this as needed)
+    // Default layout
     cardLayout = (
       <motion.div
         ref={ref}
@@ -116,20 +124,22 @@ const BlogCard = ({ post, direction }) => {
         variants={cardVariants}
       >
         <div className="text-xs font-bold text-gray-500 mb-2 flex">
-          {post.imageUrl && (
+          {imageSrc && (
             <img
-              src={post.imageUrl}
+              src={imageSrc}
               alt="Icon"
               className="w-8 h-8 mr-2"
             />
           )}
           {post.category}
         </div>
-        {post.imageUrl && (
+        {imageSrc && (
           <img
-            className="w-full h-60 object-cover rounded-md mb-4"
-            src={post.imageUrl}
-            alt="Article"
+          className="w-full h-60 rounded-md mb-4 object-contain"
+          src={imageSrc}
+          alt="Article"
+          style={{ aspectRatio: '16/9' }} // Ensures consistent aspect ratio
+      
           />
         )}
         <h3 className="text-2xl md:text-2xl lg:text-3xl font-bold">
