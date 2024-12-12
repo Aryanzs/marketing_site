@@ -8,6 +8,7 @@ import Contact from './pages/Contact'; // Import the Contact page
 import Doctors from './pages/Doctors'; // Import the Doctors page
 import Patients from './pages/Patients'; // Import the Patients page
 import ScrollToTop from './components/ScrollToTop'; // Import the ScrollToTop component
+import BlogDetail from './components/BlogDetail';
 function App() {
   return (
     <Router>
@@ -18,6 +19,8 @@ function App() {
         <Route path="/" element={<Home />} /> {/* Home Page */}
         <Route path="/about" element={<Aboutus />} /> {/* About Us Page */}
         <Route path="/blogs" element={<Blogs />} /> {/* Blogs Page */}
+        <Route path="/blogs/:id" element={<BlogDetail/>} /> {/* Blog Detail Page */}
+
         <Route path="/contact" element={<Contact />} /> {/* Contacts Page */}
         <Route path="/doctors" element={<Doctors />} /> {/* Doctors Page */}
         <Route path="/patients" element={<Patients />} /> {/* Patients Page */}

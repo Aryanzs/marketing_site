@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Link } from 'react-router-dom'; // Import Link
 
 const Blogpost = () => {
   const [blogPosts, setBlogPosts] = useState([]);
@@ -55,6 +56,8 @@ const Blogpost = () => {
               ? `http://localhost:5000${blogPosts[0].uploadedImagePath}`
               : blogPosts[0].imageUrl;
             return (
+              <Link to={`/blogs/${blogPosts[0]._id}`}>
+
               <motion.div
                 className="border-2 border-teal-400 rounded-lg p-4"
                 initial="hidden"
@@ -83,6 +86,7 @@ const Blogpost = () => {
                   {blogPosts[0].author}
                 </p>
               </motion.div>
+              </Link>
             );
           })()}
 
@@ -94,6 +98,8 @@ const Blogpost = () => {
                 ? `http://localhost:5000${blogPosts[1].uploadedImagePath}`
                 : blogPosts[1].imageUrl;
               return (
+                <Link to={`/blogs/${blogPosts[1]._id}`}>
+
                 <motion.div
                   className="border-2 border-teal-400 rounded-lg p-4"
                   initial="hidden"
@@ -118,6 +124,7 @@ const Blogpost = () => {
                     {blogPosts[1].author}
                   </p>
                 </motion.div>
+                </Link>
               );
             })()}
 
@@ -127,6 +134,8 @@ const Blogpost = () => {
                 ? `http://localhost:5000${blogPosts[2].uploadedImagePath}`
                 : blogPosts[2].imageUrl;
               return (
+                <Link to={`/blogs/${blogPosts[2]._id}`}>
+
                 <motion.div
                   className="border-2 border-teal-400 rounded-lg p-4"
                   initial="hidden"
@@ -151,6 +160,7 @@ const Blogpost = () => {
                     {blogPosts[2].author}
                   </p>
                 </motion.div>
+                </Link>
               );
             })()}
         </div>
@@ -162,6 +172,8 @@ const Blogpost = () => {
               ? `http://localhost:5000${blogPosts[3].uploadedImagePath}`
               : blogPosts[3].imageUrl;
             return (
+              <Link to={`/blogs/${blogPosts[3]._id}`}>
+
               <motion.div
                 className="border-2 border-teal-400 rounded-lg p-4"
                 initial="hidden"
@@ -190,6 +202,7 @@ const Blogpost = () => {
                   {blogPosts[3].author}
                 </p>
               </motion.div>
+              </Link>
             );
           })()}
       </div>

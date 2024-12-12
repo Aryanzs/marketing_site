@@ -2,8 +2,14 @@ import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Testimonials = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleRedirect = () => {
+    navigate('/contact'); // Redirect to the Contact page
+  };
   const testimonials = [
     {
       text: "One or two liner from the patient regarding the platform or their experience comes here.",
@@ -65,7 +71,7 @@ const Testimonials = () => {
             What Are People <br /> Saying About Us
           </h2>
           <div className="text-center lg:text-right">
-            <button className="bg-teal-600 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-teal-700 transition-all duration-300 w-full lg:w-auto hover:shadow-xl transform hover:-translate-y-0.5">
+            <button onClick={handleRedirect} className="bg-teal-600 text-white py-2 px-6 rounded-lg shadow-lg hover:bg-teal-700 transition-all duration-300 w-full lg:w-auto hover:shadow-xl transform hover:-translate-y-0.5">
               Request Callback &rarr;
             </button>
           </div>

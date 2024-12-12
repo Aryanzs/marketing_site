@@ -61,15 +61,33 @@ const ContactInfo = () => {
               title="Address"
               content="8/2, Beratan Agrahara Chikkabegur, Bangalore, Karnataka 560100"
             />
+            {/* Customer Support - Clickable */}
             <ContactItem
               icon={<Phone className="w-6 h-6 text-[#FF4A2F]" />}
               title="Customer Support"
-              content="+91 98840 40400"
+              content={
+                <a 
+                  href="tel:+919884040400" 
+                  className="text-gray-600 underline hover:text-[#FF4A2F]"
+                  aria-label="Call Customer Support"
+                >
+                  +91 98840 40400
+                </a>
+              }
             />
+            {/* Email Address - Clickable */}
             <ContactItem
               icon={<Mail className="w-6 h-6 text-[#FF4A2F]" />}
               title="Email Address"
-              content="contactus@kifaytihealth.com"
+              content={
+                <a 
+                  href="mailto:contactus@kifaytihealth.com" 
+                  className="text-gray-600 underline hover:text-[#FF4A2F]"
+                  aria-label="Send Email to Contact Us"
+                >
+                  contactus@kifaytihealth.com
+                </a>
+              }
             />
           </motion.div>
         </div>
@@ -85,7 +103,7 @@ const ContactItem = ({ icon, title, content }) => (
     whileTap={{ scale: 0.95 }}
   >
     <div className="flex-shrink-0">
-      <div className="rounded-full p-3 bg-[#FF4A2F1A] shadow-md border border-[#FF4A2F]   hover:shadow-[0px_0px_15px_#FF4A2F] transition duration-300 ease-in-out transform hover:scale-110">
+      <div className="rounded-full p-3 bg-[#FF4A2F1A] shadow-md border border-[#FF4A2F] hover:shadow-[0px_0px_15px_#FF4A2F] transition duration-300 ease-in-out transform hover:scale-110">
         {icon}
       </div>
     </div>
