@@ -156,28 +156,28 @@ const SequenceAnimation = () => {
 
   const imageVariants = {
     enter: (direction) => ({
-      y: direction > 0 ? 100 : -100,
-      opacity: 0,
-      scale: 0.95,
+      y: direction > 0 ? 100 : -60,
+      opacity: 1,
+      scale: 1,
     }),
     center: {
       y: 0,
       opacity: 1,
       scale: 1,
       transition: {
-        y: { type: "spring", stiffness: 100, damping: 20, duration: 0.8 },
-        opacity: { duration: 0.5 },
-        scale: { duration: 0.5 },
+        y: { type: "spring", stiffness: 100, damping: 9, duration: 2 },
+        opacity: { duration: 0 },
+        scroll: { duration: 1 },
       },
     },
     exit: (direction) => ({
-      y: direction > 0 ? -100 : 100,
+      y: direction > 0 ? -100 : 60,
       opacity: 0,
       scale: 0.95,
       transition: {
-        y: { type: "spring", stiffness: 100, damping: 20, duration: 0.8 },
+        y: { type: "spring", stiffness: 100, damping: 20, duration: 2 },
         opacity: { duration: 0.5 },
-        scale: { duration: 0.5 },
+        scroll: { duration: 1 },
       },
     }),
   };
@@ -185,22 +185,22 @@ const SequenceAnimation = () => {
   const textVariants = {
     enter: (direction) => ({
       y: direction > 0 ? 50 : -50,
-      opacity: 0,
+      opacity: 1,
     }),
     center: {
       y: 0,
       opacity: 1,
       transition: {
-        y: { type: "spring", stiffness: 100, damping: 20, duration: 0.8 },
-        opacity: { duration: 0.7, delay: 0.2 },
+        y: { type: "spring", stiffness: 100, damping: 9, duration: 2 },
+        scroll: { duration: 2 },
       },
     },
     exit: (direction) => ({
       y: direction > 0 ? -50 : 50,
       opacity: 0,
       transition: {
-        y: { type: "spring", stiffness: 100, damping: 20, duration: 0.8 },
-        opacity: { duration: 0.5 },
+        y: { type: "spring", stiffness: 100, damping: 20, duration: 2 },
+        opacity: { duration: 0.25 },
       },
     }),
   };
@@ -281,9 +281,9 @@ const SequenceAnimation = () => {
                 exit="exit"
                 className="w-full"
               >
-                <div className="space-y-4 text-center md:text-left">
+                <div className="space-y-3 text-center md:text-left mb-20">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black">
-                    <span className="font-semibold block mb-2">
+                    <span className="font-semibold block mb-[3px]">
                       {sequences[currentIndex].text.line1}
                     </span>
                     <span

@@ -15,8 +15,9 @@ const Home = () => {
     <HomeSection/>
     <KidneyCareEcosystem/>
     <WhyChooseKifayti/>
-    <SupportAndEducation/>
     <ReviewSlider/>
+
+    <SupportAndEducation/>
     <RecognizedBy/>
     <ContactUs/>
     <Footer/>

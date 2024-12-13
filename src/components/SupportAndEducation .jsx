@@ -10,7 +10,7 @@ const SupportAndEducation = () => {
     navigate('/contact'); // Redirect to the Contact page
   };
   return (
-    <section className="bg-gray-50 py-12 px-4 md:px-16">
+    <section className="bg-white py-12 px-4 md:px-16">
       {/* Section One */}
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6">
