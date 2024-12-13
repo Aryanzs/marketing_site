@@ -9,7 +9,7 @@ import card5img from "../assets/figma images/_0036.png";
 import backgroundImage from "../assets/figma images/Why us section.png"; // Add your background image here
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     y: 0,
@@ -89,7 +89,7 @@ const WhyChooseKifayti = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="w-full max-w-7xl px-4 lg:px-8">
+      <div className="w-full max-w-full px-4 lg:p-20">
         <motion.div
           ref={headerRef}
           className="text-center mb-20"
@@ -101,18 +101,16 @@ const WhyChooseKifayti = () => {
             Why Choose{" "}
             <span className="text-orange-500 relative">
               Kifayti?
-              <span className="absolute -bottom-2 left-0 w-full h-1.5 bg-orange-300/60 transform -rotate-1 rounded-full block md:hidden"></span>
             </span>
           </h2>
 
-          <div className="mt-4 w-24 h-1 bg-teal-500 mx-auto rounded-full block md:hidden"></div>
           </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* First Card */}
           <motion.div
             ref={ref1}
-            className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col text-left group hover:-translate-y-1 active:scale-[0.99]"
+            className="bg-white p-8 lg:px-28 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col text-left group hover:-translate-y-1 active:scale-[0.99]"
             style={{ boxShadow: "0 10px 20px rgba(0, 76, 109, 0.3)" }}
             initial="hidden"
             animate={controls1}
@@ -161,7 +159,7 @@ const WhyChooseKifayti = () => {
               </div>
               <div className="flex-shrink-0 w-40 h-40 md:w-48 md:h-48">
                 <img
-                  src={card2img}
+                  src={card3img}
                   alt="Treatment Plan"
                   className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500"
                 />
@@ -177,12 +175,12 @@ const WhyChooseKifayti = () => {
               animate={controls3}
               variants={cardVariants}
             >
-              <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-6 gap-6">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-teal-900 text-center md:text-left mb-4 md:mb-0 group-hover:text-teal-800 transition-colors">
+              <div className="flex flex-col md:flex-row items-center md:items-start justify-between lg:mt-3 mb-6 gap-6">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl lg:mt-1  font-bold text-teal-900  leading-tight lg:leading-snug max-w-sm text-center md:text-left mb-4 md:mb-0 group-hover:text-teal-800 transition-colors">
                   Discounted Medicines & <br /> Lab Tests
                 </h2>
                 <img
-                  src={card3img}
+                  src={card4img}
                   alt="Health Monitoring"
                   className="w-40 md:w-48 h-auto object-contain transform group-hover:scale-110 transition-transform duration-500"
                 />
@@ -218,7 +216,7 @@ const WhyChooseKifayti = () => {
             </div>
             <div className="overflow-hidden rounded-xl flex-grow h-[250px] bg-gray-50/50 relative">
               <img
-                src={card4img}
+                src={card2img}
                 alt="Wellness"
                 className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
               />

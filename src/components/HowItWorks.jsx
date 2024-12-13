@@ -21,7 +21,7 @@ const FeatureCard = ({ icon: Icon, description, index }) => {
   }, [controls, inView]);
 
   const variants = {
-    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       y: 0,

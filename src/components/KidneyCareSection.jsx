@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import phoneImage from '../assets/images/mobile_patient.png'; // Replace with your image path
+import phoneImage from '../assets/figma images/kidneyphonecare 1(2x).png'; // Replace with your image path
 
 const KidneyCareSection = () => {
   // Setup for scroll-triggered animation
@@ -48,17 +48,17 @@ const KidneyCareSection = () => {
   return (
     <motion.div
       ref={ref} // Reference for scroll triggering
-      className="flex flex-col md:flex-row items-center justify-between p-4 md:p-8 lg:px-16 bg-white"
+      className="flex flex-col md:flex-row items-center justify-center p-4 md:p-8 lg:px-16 bg-white"
       initial="hidden"
       animate={controls} // Use animation control based on scroll position
       variants={textVariants}
     >
       {/* Text Section */}
       <motion.div
-        className="text-center md:text-left mb-8 md:mb-0 md:w-1/2 lg:-mt-80 mt-20 order-1 md:order-1"
+        className="text-center md:text-left  mb-8 md:mb-0 md:w-1/2 lg:-mt-80 mt-20 order-1 md:order-1"
         variants={textVariants}
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black">Your Kidney Care</h1>
+        <h1 className="text-4xl mt-4 md:text-5xl lg:text-6xl font-bold text-black">Your Kidney Care</h1>
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-teal-500">
           On Your <br />
           Fingertips
@@ -83,7 +83,7 @@ const KidneyCareSection = () => {
         <img
           src={phoneImage}
           alt="Kidney Care"
-          className="w-3/4 md:w-full h-auto lg:h-[760px] lg:mr-20 lg:my-10 transform rotate-12"
+          className="w-max h-auto lg:mr-20 lg:my-10 transform rotate-12"
         />
       </motion.div>
     </motion.div>

@@ -6,11 +6,10 @@ import backgroundImage from '../assets/figma images/and so much more.png'; // Ad
 
 // Animation variants for cards and header
 const cardVariants = {
-  hidden: { opacity: 0, y: 40, scale: 0.9 },
+  hidden: { opacity: 0},
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
