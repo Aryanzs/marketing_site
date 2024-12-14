@@ -156,9 +156,10 @@ const SequenceAnimation = () => {
 
   const imageVariants = {
     enter: (direction) => ({
-      y: direction > 0 ? 100 : -60,
-      opacity: 1,
+      y: direction > 0 ? 45 : -60,
+      opacity: 0.5,
       scale: 1,
+
     }),
     center: {
       y: 0,
@@ -181,6 +182,7 @@ const SequenceAnimation = () => {
       },
     }),
   };
+  
 
   const textVariants = {
     enter: (direction) => ({
