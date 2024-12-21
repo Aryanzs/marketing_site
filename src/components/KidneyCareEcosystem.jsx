@@ -1,16 +1,53 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import mobileImage from '../assets/images/mobileimg.png';
+import Lottie from "lottie-react";
+import animationData from "../assets/animations/▶-Animation-frame.json"; 
+import { useInView } from "react-intersection-observer";
 
 const KidneyCareEcosystem = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.5,
+  });
+
+  const lottieRef = useRef(null);
+
+  // Toggle for controlling fade-in on initial mount or replay
+  const [fadeIn, setFadeIn] = useState(false);
+
+  // On mount or whenever `inView` changes, handle animation logic
+  useEffect(() => {
+    if (inView) {
+      // Fade in the container to hide potential jerk
+      setFadeIn(true);
+
+      // Reset to first frame and play once
+      if (lottieRef.current) {
+        lottieRef.current.goToAndStop(0, true);
+        // Delay a tiny bit to ensure goToAndStop completes before playing
+        setTimeout(() => {
+          lottieRef.current.play();
+        }, 50);
+      }
+    } else {
+      // Hide to avoid seeing the paused or incomplete frame
+      setFadeIn(false);
+
+      // Optionally, you can stop the animation or reset to frame 0
+      if (lottieRef.current) {
+        lottieRef.current.goToAndStop(0, true);
+      }
+    }
+  }, [inView]);
+
   return (
     <div className="flex flex-col lg:flex-row items-center justify-between h-auto lg:h-screen bg-gray-50 p-4 md:p-8">
-      
+
       {/* Left Section - Heading at the top left */}
-      <motion.div 
+      <motion.div
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ amount: 0.2 }} // Animates when 20% of the element is visible
+        viewport={{ amount: 0.2 }}
         transition={{ duration: 0.8 }}
         className="lg:w-1/3 w-full lg:text-left text-center lg:pl-16 mb-8 lg:mb-0"
       >
@@ -22,31 +59,44 @@ const KidneyCareEcosystem = () => {
         </h2>
       </motion.div>
 
-      {/* Center Section - Image Mockup */}
-      <motion.div 
+      {/* Center Section - Lottie Animation */}
+      <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
-        viewport={{ amount: 0.3 }} // Animates  when 20% of the element is visible
+        viewport={{ amount: 0.3 }}
         transition={{ duration: 0.8 }}
         className="lg:w-1/3 w-full flex justify-center items-center mb-8 lg:mb-0"
       >
-        <div className="relative">
-          {/* Mobile Mockup */}
-          <div className="border-4 border-gray-300 rounded-3xl w-40 sm:w-48 md:w-56 lg:w-64 h-[350px] sm:h-[400px] md:h-[440px] lg:h-[480px] overflow-hidden shadow-xl">
-            <img
-              src={mobileImage} // Dummy image for mockup
-              alt="Mobile Mockup"
+        <div ref={ref} className="relative">
+          {/* Container for fade-in effect */}
+          <div
+            className={`transition-opacity duration-300 ${
+              fadeIn ? "opacity-100" : "opacity-0"
+            } 
+            w-48 sm:w-56 md:w-64 lg:w-80
+            h-[380px] sm:h-[420px] md:h-[480px] lg:h-[540px]
+            overflow-hidden flex items-center justify-center`}
+          >
+            <Lottie
+              lottieRef={lottieRef}
+              animationData={animationData}
+              autoplay={false}    // We manually control play
+              loop={false}        // Play once
+              rendererSettings={{
+                preserveAspectRatio: "xMidYMid slice",
+              }}
               className="w-full h-full object-cover"
+              style={{ pointerEvents: "none" }}
             />
           </div>
         </div>
       </motion.div>
 
       {/* Right Section - Text at the bottom right */}
-      <motion.div 
+      <motion.div
         initial={{ x: 100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ amount: 0.2 }} // Animates  when 20% of the element is visible
+        viewport={{ amount: 0.2 }}
         transition={{ duration: 0.8 }}
         className="lg:w-1/3 w-full lg:text-right text-center mt-8 lg:mt-[300px] px-4 lg:px-0"
       >
