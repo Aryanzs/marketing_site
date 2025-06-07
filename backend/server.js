@@ -19,7 +19,11 @@ connectDB();
 
 // Middlewares
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://marketing-site-ten-mu.vercel.app', // ✅ YOUR frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}));
+
 
 // (Optional) Serve static images if any local uploads still exist — remove if only using Cloudinary
 // const __dirname = path.resolve();
