@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Import Axios for API requests
 import phone from "../assets/figma images/phone call 1.png";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const ContactUsPage = () => {
   // State to manage form inputs
   const [formData, setFormData] = useState({
@@ -34,7 +36,7 @@ const ContactUsPage = () => {
 
     try {
       // Make a POST request to the backend
-      const response = await axios.post("http://localhost:5000/api/contact/submit", formData);
+      const response = await axios.post(`${API_BASE_URL}/contact/submit`, formData);
 
       // Handle success response
       setStatus({ type: "success", message: response.data.success });

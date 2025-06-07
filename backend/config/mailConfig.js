@@ -12,7 +12,7 @@ export const mailTransporter = nodemailer.createTransport({
     user: process.env.EMAIL_USERNAME,
     pass: process.env.EMAIL_PASSWORD,
   },
-  debug: true, // Enable debug output
-  logger: true, // Log information to console
+  //debug: true, // Enable debug output
+  //logger: true, // Log information to console
 });
 

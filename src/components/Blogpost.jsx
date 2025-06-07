@@ -3,6 +3,8 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Link } from 'react-router-dom'; // Import Link
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const Blogpost = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const controls = useAnimation();
@@ -21,7 +23,7 @@ const Blogpost = () => {
 
   // Fetch blog posts from the backend API
   useEffect(() => {
-    fetch("http://localhost:5000/api/blogs")
+    fetch(`${API_BASE_URL}/blogs`)
       .then((response) => response.json())
       .then((data) => setBlogPosts(data))
       .catch((error) => console.error("Error fetching blog posts:", error));

@@ -8,6 +8,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import './BlogDetail.css'; // Optional: For additional custom styles
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const BlogDetail = () => {
   const { id } = useParams(); // Extract the blog ID from the URL
   const [blog, setBlog] = useState(null);
@@ -18,8 +20,8 @@ const BlogDetail = () => {
     // Fetch the blog details using the ID
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/blogs/${id}`);
-        console.log('Fetching blog:', `http://localhost:5000/api/blogs/${id}`);
+        const response = await fetch(`${API_BASE_URL}/blogs/${id}`);
+        console.log('Fetching blog:', `${API_BASE_URL}/blogs/${id}`);
         console.log('Response status:', response.status);
 
         if (!response.ok) {

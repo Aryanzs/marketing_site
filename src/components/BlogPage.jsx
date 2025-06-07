@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
 const BlogPage = () => {
   // State to hold blog posts and pagination
   const [blogPosts, setBlogPosts] = useState([]);
@@ -12,7 +15,7 @@ const BlogPage = () => {
 
   // Fetch blog posts from backend
   useEffect(() => {
-    fetch("http://localhost:5000/api/blogs")
+    fetch(`${API_BASE_URL}/blogs`)
       .then((response) => response.json())
       .then((data) => {
         setBlogPosts(data);
