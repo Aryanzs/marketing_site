@@ -1,4 +1,3 @@
-//// controllers/blogController.js
 import BlogPost from '../models/BlogPost.js';
 
 // @desc    Get all blog posts
@@ -34,9 +33,8 @@ export async function getPostById(req, res) {
 export async function createPost(req, res) {
   try {
     const { title, content, author, category, imageUrl } = req.body;
-    const uploadedImagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
-    // Ensure at least one image source is provided
+    const uploadedImagePath = req.file ? req.file.path : null; // Cloudinary gives us a .path
     if (!uploadedImagePath && !imageUrl) {
       return res.status(400).json({ message: 'An image file or image URL is required' });
     }
@@ -46,8 +44,8 @@ export async function createPost(req, res) {
       content,
       author,
       category,
-      uploadedImagePath, // Primary if present
-      imageUrl: !uploadedImagePath ? imageUrl : null, // Fallback
+      uploadedImagePath, // From Cloudinary
+      imageUrl: !uploadedImagePath ? imageUrl : null, // Optional fallback
     });
 
     const post = await newPost.save();
@@ -68,9 +66,8 @@ export async function updatePost(req, res) {
     const post = await BlogPost.findById(req.params.id);
     if (!post) return res.status(404).json({ message: 'Post not found' });
 
-    const uploadedImagePath = req.file ? `/uploads/${req.file.filename}` : post.uploadedImagePath;
+    const uploadedImagePath = req.file ? req.file.path : post.uploadedImagePath;
 
-    // Ensure at least one image source is present
     if (!uploadedImagePath && !imageUrl && !post.uploadedImagePath && !post.imageUrl) {
       return res.status(400).json({ message: 'An image file or image URL is required' });
     }
@@ -80,8 +77,8 @@ export async function updatePost(req, res) {
     post.content = content || post.content;
     post.author = author || post.author;
     post.category = category || post.category;
-    post.uploadedImagePath = uploadedImagePath; // Priority for uploaded file
-    post.imageUrl = uploadedImagePath ? null : (imageUrl || post.imageUrl); // Fallback to URL
+    post.uploadedImagePath = uploadedImagePath;
+    post.imageUrl = uploadedImagePath ? null : (imageUrl || post.imageUrl);
 
     await post.save();
     res.status(200).json(post);

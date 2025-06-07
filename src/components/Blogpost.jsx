@@ -52,9 +52,11 @@ const Blogpost = () => {
         {/* First Column */}
         {blogPosts[0] &&
           (() => {
-            const imageSrc0 = blogPosts[0].uploadedImagePath
-              ? `http://localhost:5000${blogPosts[0].uploadedImagePath}`
-              : blogPosts[0].imageUrl;
+            const imageSrc0 =   blogPosts[0].uploadedImagePath?.startsWith('http')
+    ? blogPosts[0].uploadedImagePath
+    : blogPosts[0].imageUrl?.startsWith('http')
+    ? blogPosts[0].imageUrl
+    : null;
             return (
               <Link to={`/blogs/${blogPosts[0]._id}`}>
                 <motion.div
@@ -99,9 +101,11 @@ const Blogpost = () => {
         <div className="flex flex-col gap-4">
           {blogPosts[1] &&
             (() => {
-              const imageSrc1 = blogPosts[1].uploadedImagePath
-                ? `http://localhost:5000${blogPosts[1].uploadedImagePath}`
-                : blogPosts[1].imageUrl;
+              const imageSrc1 =   blogPosts[1].uploadedImagePath?.startsWith('http')
+    ? blogPosts[1].uploadedImagePath
+    : blogPosts[1].imageUrl?.startsWith('http')
+    ? blogPosts[1].imageUrl
+    : null;
               return (
                 <Link to={`/blogs/${blogPosts[1]._id}`}>
                   <motion.div
@@ -140,9 +144,11 @@ const Blogpost = () => {
   
           {blogPosts[2] &&
             (() => {
-              const imageSrc2 = blogPosts[2].uploadedImagePath
-                ? `http://localhost:5000${blogPosts[2].uploadedImagePath}`
-                : blogPosts[2].imageUrl;
+              const imageSrc2 =   blogPosts[2].uploadedImagePath?.startsWith('http')
+    ? blogPosts[2].uploadedImagePath
+    : blogPosts[2].imageUrl?.startsWith('http')
+    ? blogPosts[2].imageUrl
+    : null;
               return (
                 <Link to={`/blogs/${blogPosts[2]._id}`}>
                   <motion.div
@@ -183,9 +189,11 @@ const Blogpost = () => {
         {/* Third Column (Same as First Column) */}
         {blogPosts[3] &&
           (() => {
-            const imageSrc3 = blogPosts[3].uploadedImagePath
-              ? `http://localhost:5000${blogPosts[3].uploadedImagePath}`
-              : blogPosts[3].imageUrl;
+            const imageSrc3 =   blogPosts[3].uploadedImagePath?.startsWith('http')
+    ? blogPosts[3].uploadedImagePath
+    : blogPosts[3].imageUrl?.startsWith('http')
+    ? blogPosts[3].imageUrl
+    : null;
             return (
               <Link to={`/blogs/${blogPosts[3]._id}`}>
                 <motion.div

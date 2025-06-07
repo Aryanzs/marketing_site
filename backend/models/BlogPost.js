@@ -1,4 +1,3 @@
-// models/BlogPost.js
 import mongoose from 'mongoose';
 
 const { Schema, model } = mongoose;
@@ -14,9 +13,12 @@ const blogPostSchema = new Schema(
       required: true,
     },
     date: { type: Date, default: Date.now },
-    imageUrl: { type: String },
-    uploadedImagePath: { type: String }, // For locally uploaded images
 
+    // Cloudinary image (primary field after integration)
+    uploadedImagePath: { type: String }, // Stores Cloudinary image URL
+
+    // Optional manual image URL (if no upload)
+    imageUrl: { type: String },
   },
   { timestamps: true }
 );

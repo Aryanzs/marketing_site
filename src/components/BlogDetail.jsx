@@ -55,9 +55,11 @@ const BlogDetail = () => {
   }
 
   // Determine the final image source
-  const imageSrc = blog.uploadedImagePath
-    ? `http://localhost:5000${blog.uploadedImagePath}`
-    : blog.imageUrl;
+  const imageSrc =   blog.uploadedImagePath?.startsWith('http')
+    ? blog.uploadedImagePath
+    : blog.imageUrl?.startsWith('http')
+    ? blog.imageUrl
+    : null;
 
   // Custom renderer for code blocks with syntax highlighting
   const renderers = {

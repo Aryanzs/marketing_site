@@ -33,9 +33,11 @@ const BlogCard = ({ post, direction }) => {
     },
   };
 
-  const imageSrc = post.uploadedImagePath
-    ? `http://localhost:5000${post.uploadedImagePath}`
-    : post.imageUrl;
+  const imageSrc =   post.uploadedImagePath?.startsWith('http')
+    ? post.uploadedImagePath
+    : post.imageUrl?.startsWith('http')
+    ? post.imageUrl
+    : null;
 
     return (
       <Link to={`/blogs/${post._id}`} className="block"> {/* Wrap the motion div in Link */}
