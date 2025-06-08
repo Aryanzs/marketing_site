@@ -19,9 +19,27 @@ connectDB();
 
 // Middlewares
 app.use(bodyParser.json());
+const allowedOrigins = [
+  'https://marketing-site-ten-mu.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'https://admin-blogs.vercel.app',
+  
+];
+
 app.use(cors({
-  origin: 'https://marketing-site-ten-mu.vercel.app', // ✅ YOUR frontend
+  origin: function (origin, callback) {
+    // Allow requests with no origin (e.g., curl, mobile apps)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('❌ Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, // if you're using cookies/auth
 }));
 
 
