@@ -24,7 +24,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
   'https://admin-blogs.vercel.app',
-  
+  'https://www.kifaytihealth.com'
 ];
 
 app.use(cors({
